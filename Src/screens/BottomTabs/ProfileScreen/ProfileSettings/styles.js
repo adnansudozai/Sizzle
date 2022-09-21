@@ -1,0 +1,151 @@
+import {StyleSheet} from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  profileView: {
+    marginTop: hp(2),
+    alignItems: 'center',
+  },
+  inputLabel: {
+    fontSize: 4.2,
+    fontWeight: 'bold',
+    color: '#1F1F1F',
+  },
+  securityPreview: {
+    marginTop: 45,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderColor: '#eee',
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: 12,
+  },
+  previewSecurityTitle: {
+    marginBottom: hp(0.7),
+    fontSize: 4,
+    color: '#000',
+    fontWeight: '500',
+  },
+  previewSecuritySubtitle: {
+    color: '#A3A4AB',
+    fontSize: 3.7,
+  },
+  inviteTitle: {
+    color: '#000',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: 25,
+    fontWeight: '500',
+    fontSize: 5,
+  },
+  inviteShareCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderColor: '#eee',
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: 15,
+    paddingHorizontal: 20,
+    marginTop: 35,
+  },
+  inviteInfotext: {
+    color: '#A3A4AB',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: 5,
+    fontWeight: '500',
+    fontSize: 3.8,
+    marginBottom: 5,
+  },
+  inviteCode: {
+    color: '#000',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginTop: 5,
+    fontWeight: '500',
+    fontSize: 4,
+  },
+  myInviteTitle: {
+    color: '#000',
+    fontWeight: '500',
+    fontSize: 3.8,
+  },
+  myInvitesItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 25,
+    paddingHorizontal: 15,
+  },
+  securityItem: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderColor: '#eee',
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: 12,
+  },
+  securityInfoText: {
+    color: '#A3A4AB',
+    fontSize: 3.8,
+    alignItems: 'center',
+    textAlign: 'center',
+    marginBottom: hp(2),
+  },
+  securityItemTitle: {
+    marginBottom: hp(0.7),
+    fontSize: 4.4,
+    color: '#000',
+    fontWeight: '500',
+  },
+  securityItemSubtitle: {
+    color: '#A3A4AB',
+    fontSize: 3.8,
+  },
+  gAuthToggle: {
+    marginTop: hp(2),
+    marginBottom: hp(2),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 16.6,
+  },
+  gAuthToggleTitle: {
+    marginLeft: 20,
+    color: '#000',
+    fontWeight: '500',
+  },
+  gAuthSubTitle: {
+    color: '#A3A4AB',
+    fontSize: 3.7,
+    marginBottom: hp(0.7),
+  },
+  backUpkeyCopyCard: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderColor: '#eee',
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: 12,
+    paddingVertical: 20,
+  },
+  backUpkeyText: {
+    color: '#000',
+    fontWeight: '500',
+  },
+});
+
+export default styles;
