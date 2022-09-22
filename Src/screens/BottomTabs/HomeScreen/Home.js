@@ -54,6 +54,9 @@ React.useEffect(() => {
     db.transaction(tx => {
 
       tx.executeSql('SELECT * FROM tblToken', [], (tx, results) => {
+        console.log('====================================');
+        console.log(results);
+        console.log('====================================');
         var tokens = [];
         for (let i = 0; i < results.rows.length; ++i)
         tokens.push(results.rows.item(i));

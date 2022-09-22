@@ -9,6 +9,7 @@ import {
 import {Container, ResponsiveText, InputField, Button,Loader} from '../../components';
 import styles from './styles';
 import { register_User } from '../../Api/Api';
+import Toast from 'react-native-simple-toast';
 const Register = props => {
 
 
@@ -19,6 +20,8 @@ const Register = props => {
   const [errormessage, seterrormessage] = useState('');
   const [iserror, setiserror] = useState(false);
   const [Loading, setloading] = useState(false);
+  const [showpass, setshowpass] = useState(false);
+  const [showconfrmpass, setshowconfrmpass] = useState(false);
 
 
 
@@ -51,11 +54,18 @@ let user={ user:{
 }
 await register_User(user)
   .then((res) => {
-if(res){
-  setloading(false)
+    console.log(res.status,'res');
+if(res.status==200){
+  setiserror(true)
+  seterrormessage(res.data.message)
+setloading(false)
 
 }
-
+else{
+  setloading(false)
+  Toast.show('Successfully Register!');
+  props.navigation.navigate('PinScreen')
+}
 
   }).catch((err) => {
 
@@ -108,11 +118,14 @@ setloading(false)
                 placeholder={'Password'}
                 value={passwordInput}
                 color={'#000'}
-                secureTextEntry={true}
+          
+                secureTextEntry={!showpass?true:false}
                 
                 onChangeText={passwordInput => {setiserror(false), setPasswordInput(passwordInput)}}
                 borderRadius={30}
                 backgroundColor={'#F1F1F5'}
+                rightIconName={showpass?'eye':'eye-off'}
+                righIconOnPress={()=>setshowpass(!showpass)}
               />
             </View>
             <View style={{marginTop: 10}}>
@@ -121,8 +134,9 @@ setloading(false)
                 placeholder={'Confirm Password'}
                 value={confirmpassword}
                 color={'#000'}
-                secureTextEntry={true}
-
+                secureTextEntry={!showconfrmpass?true:false}
+                rightIconName={showconfrmpass?'eye':'eye-off'}
+                righIconOnPress={()=>setshowconfrmpass(!showconfrmpass)}
                 onChangeText={passwordInput =>  {setiserror(false),setconfirmpassword(passwordInput)}}
                 borderRadius={30}
                 backgroundColor={'#F1F1F5'}

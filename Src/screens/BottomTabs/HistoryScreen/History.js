@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
-import {Container, ResponsiveText, Header} from '../../../components';
+import {Container, ResponsiveText,Loader, Header} from '../../../components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import '../../../../shim';
 
@@ -9,32 +9,84 @@ import axios from 'axios';
 const History = props => {
   const [toggle, setToggle] = useState(false);
   const [Historydata,setHistorydata]=useState([])
+  const [Loading, setloading] = useState(false);
+
   useEffect(()=>{
-    gettransectionHistory()
+  
+   if(props.route.params.item.chainName=='Binance Smart Chain'){
+    bschistory();
+   }
+   else{
+    getetherhistory()
+   }
   },[])
 
-  const gettransectionHistory= async()=>{
-  
+  const bschistory=async()=>{
+    setloading(true)
+    let web3binance = new Web3('https://rpc.ankr.com/bsc');
+    let obj = [];
+    let array = [];
+    console.log('transextion', props.route.params.mywalletaddress, blocknumber);
+try {
+  var blocknumber = await web3binance.eth.getBlockNumber();
+  console.log('transextion', props.route.params.mywalletaddress, blocknumber);
+
+  const binanceresult = await axios.get(
+    `https://api.bscscan.com/api?module=account&action=txlist&address=${props.route.params.mywalletaddress}&startblock=0&endblock=${blocknumber}&sort=desc&apikey=7SPAWMVTISPTNHNPSYCF2KXXI6FQ39GTF3`,
+  );
+  if(binanceresult){
+    setloading(false)
+  }
+  binanceresult.data.result.map(async item => {
+    const milliseconds = item.timeStamp * 1000;
+
+    const dateObject = new Date(milliseconds);
+    let date = dateObject.toISOString().split('T');
+    let dateformate = date[0];
+    // / 100000000
+    var etherwithdrawamount1 = web3binance.utils.fromWei(
+      item.value.toString(),
+      'ether',
+    );
+
+    obj = {
+      value: etherwithdrawamount1,
+      to: item.to,
+      date: dateformate,
+      hash: item.hash,
+
+    };
+
+    array.push(obj);
+  });
+
+  setHistorydata(array);
+  console.log('transextion===>>>',binanceresult);
+} catch (error) {
+  setloading(false)
+}
+   
+  }
+
+  const getetherhistory= async()=>{
+    setloading(true)
+    
 
       let web3 = new Web3('https://rpc.ankr.com/eth');
       console.log('web3=====>>>>nj>', web3);
-  
+
+      try {
+
       var blocknumber = await web3.eth.getBlockNumber();
       console.log('transextion', props.route.params.mywalletaddress, blocknumber);
   
       const result = await axios.get(
         `https://api.etherscan.io/api?module=account&action=txlist&address=${props.route.params.mywalletaddress}&startblock=0&endblock=${blocknumber}&sort=asc&apikey=U2TQCDDSJBGSKSII5HXNTRQIR4ATTXV1UD`,
       );
-
-
-      let web3binance = new Web3('https://rpc.ankr.com/bsc');
-  
-      console.log('transextion', props.route.params.mywalletaddress, blocknumber);
-  
-      const binanceresult = await axios.get(
-        `https://api.bscscan.com/api?module=account&action=txlist&address=${props.route.params.mywalletaddress}&startblock=0&endblock=${blocknumber}&sort=desc&apikey=7SPAWMVTISPTNHNPSYCF2KXXI6FQ39GTF3`,
-      );
-  
+if(result){
+  setloading(false)
+}
+    
       let obj = [];
       let array = [];
       result.data.result.map(async item => {
@@ -44,7 +96,7 @@ const History = props => {
         let date = dateObject.toISOString().split('T');
         let dateformate = date[0];
         // / 100000000
-        var etherwithdrawamount1 = web3binance.utils.fromWei(
+        var etherwithdrawamount1 = web3.utils.fromWei(
           item.value.toString(),
           'ether',
         );
@@ -59,37 +111,22 @@ const History = props => {
   
         array.push(obj);
       });
-      binanceresult.data.result.map(async item => {
-        const milliseconds = item.timeStamp * 1000;
-  
-        const dateObject = new Date(milliseconds);
-        let date = dateObject.toISOString().split('T');
-        let dateformate = date[0];
-        // / 100000000
-        var etherwithdrawamount1 = web3binance.utils.fromWei(
-          item.value.toString(),
-          'ether',
-        );
-
-        obj = {
-          value: etherwithdrawamount1,
-          to: item.to,
-          date: dateformate,
-          hash: item.hash,
-   
-        };
-  
-        array.push(obj);
-      });
+    
   
       setHistorydata(array);
-      console.log('transextion===>>>',binanceresult, result);
+      console.log('transextion===>>>', result);
   
+  
+        
+      } catch (error) {
+        setloading(false)
+      }
   
 
   }
   const renderwithdraw=({item,index})=>{
-
+    console.log('hashhhh',item.hash);
+let dolarorice=props.route.params.item.current_price*item.value
     return(
       <View>
         {item.to.toLowerCase()==props.route.params.mywalletaddress.toLowerCase()?
@@ -110,7 +147,7 @@ const History = props => {
         </View>
         <View>
           <ResponsiveText style={styles.dallorText}>
-            {item.value}
+            ${dolarorice}
           </ResponsiveText>
         </View>
       </View>
@@ -124,10 +161,8 @@ const History = props => {
 
 
   const renderseposit=({item,index})=>{
-    console.log('====================================');
-    console.log(item.to);
-   
-    console.log('====================================');
+    let dolarorice=props.route.params.item.current_price*item.value
+
     return(
       <View>
         {item.to.toLowerCase()!=props.route.params.mywalletaddress.toLowerCase()?
@@ -147,7 +182,7 @@ const History = props => {
     </View>
     <View>
       <ResponsiveText style={{color: '#000', paddingRight: 20}}>
-        {item.value}
+        {dolarorice}
       </ResponsiveText>
     </View>
   </View>
@@ -159,6 +194,8 @@ const History = props => {
   }
   return (
     <Container backgroundColor={'white'}>
+      <Loader loading={Loading} />
+
       <Header
         navigation={props.navigation}
         leftIcon={'chevron-left'}
@@ -166,13 +203,13 @@ const History = props => {
         textColor={'#000'}
       />
       <View style={styles.mainContainer}>
-        <TouchableOpacity onPress={() => {setToggle(false),gettransectionHistory()}}>
+        <TouchableOpacity onPress={() => {setToggle(false)}}>
           <ResponsiveText style={!toggle ? styles.view1 : styles.view2}>
             {'Withdraw'}
           </ResponsiveText>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => {setToggle(true),gettransectionHistory()}}>
+        <TouchableOpacity onPress={() => {setToggle(true)}}>
           <ResponsiveText style={toggle ? {...styles.view1,borderBottomColor:'green'}  : styles.view2}>
             {'Deposit'}
           </ResponsiveText>

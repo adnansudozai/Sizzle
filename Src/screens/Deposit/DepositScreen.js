@@ -57,7 +57,7 @@ const DepositScreen = props => {
         textColor={'#000'}
       />
       <View style={{borderWidth:0,marginHorizontal:20,alignItems:"center",marginTop:10}}>
-        <QRCode value={props.route.params.mywalledAddress} size={170} />
+        <QRCode value={props.route.params.mywalledAddress?props.route.params.mywalledAddress:'Please Create wallet'} size={170} />
         <View
           style={{
             backgroundColor: '#fafafa',
@@ -69,11 +69,12 @@ const DepositScreen = props => {
             borderRadius: 5,
             justifyContent: 'space-around',
           }}>
-            {props.route.params.mywalledAddress&&(
+            {props.route.params.mywalledAddress?
           <ResponsiveText style={{color: '#000',marginTop:10,marginBottom:10}}>
             {`${props.route.params.mywalledAddress.slice(0,25)}.........${props.route.params.mywalledAddress.slice(props.route.params.mywalledAddress.length-5)}`}
           </ResponsiveText>
-          )}
+          :null}
+          {props.route.params.mywalledAddress?
           <TouchableOpacity
             onPress={() => {
               Clipboard.setString(props.route.params.mywalledAddress),
@@ -81,9 +82,10 @@ const DepositScreen = props => {
             }}>
             <Icon name="content-copy" size={20} color="#000" />
           </TouchableOpacity>
+          :null}
         </View>
       </View>
-      <View style={{paddingHorizontal: wp(7)}}>
+      <View style={{paddingHorizontal: wp(7),marginTop:hp(3)}}>
         <ResponsiveText
           style={{
             color: '#000',

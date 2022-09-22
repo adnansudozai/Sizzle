@@ -7,22 +7,28 @@ const PinScreen = props => {
   const [pin, setPin] = useState('');
   const [confirmPin, setConfirmPin] = useState('');
   const [errormessage, seterrormessage] = useState('');
+  const [error, seterror] = useState(false);
+
   const verifaypin=()=>{
     if(!pin){
       seterrormessage('Please enter a Pin')
+      seterror(true)
     }
     else if(!confirmPin){
       seterrormessage('Please Confirm your Pin')
+      seterror(true)
 
     }
     else if(pin!==confirmPin){
       seterrormessage(`Confirm pin does't match`)
+      seterror(true)
     
     }
     else{
+
       props.navigation.navigate('DashboardTabNavigator')
     }
-    props.navigation.navigate('DashboardTabNavigator')
+   
   }
 
   return (
@@ -39,7 +45,7 @@ const PinScreen = props => {
               }
             </ResponsiveText>
           </View>
-          {errormessage!=''&&(
+          {error&&(
           <View style={styles.errorview}>
           <ResponsiveText style={styles.errormessage}>
             {errormessage}
@@ -55,7 +61,7 @@ const PinScreen = props => {
               color={'#000'}
               secureTextEntry={true}
               keyboardType="numeric"
-              onChangeText={pin => setPin(pin)}
+              onChangeText={pin => {setPin(pin),seterror(false)}}
               maxLength={6}
               borderRadius={30}
               backgroundColor={'#F1F1F5'}
@@ -87,7 +93,7 @@ const PinScreen = props => {
             <View>
               <Button
                 title={'Skip'}
-                onPress={() => console.log('login Press')}
+                onPress={() =>  props.navigation.navigate('DashboardTabNavigator')}
                 titleStyle={{fontSize: 4.5, color: '#000'}}
                 btnContainer={{
                   borderRadius: 5,

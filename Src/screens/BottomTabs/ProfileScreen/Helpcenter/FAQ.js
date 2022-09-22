@@ -6,7 +6,7 @@ import { heightPercentageToDP as hp, widthPercentageToDP as wp } from "react-nat
 
 
 const FAQ = (props) => {
-console.log('props in faq is ====>>>>',props)
+
     const Faqdata = [
         {
             id: 1,
@@ -50,7 +50,7 @@ console.log('props in faq is ====>>>>',props)
     const Expendhandle = (item) => {
         if (selectedIdss == item) {
             setselectedIdss('')
-
+            
         } else {
             setselectedIdss(item)
         }
@@ -59,10 +59,11 @@ console.log('props in faq is ====>>>>',props)
     const renderfaq = ({ item, index }) => {
         return (
             <View style={{ marginTop: hp('2%') }}>
-                <View style={styles.mainView}>  h  
+                <View style={styles.mainView}>  
                     <View style={styles.subView}>
                         <Text style={styles.txt}>
-                            {item.question}</Text>
+                            {item.question}
+                            </Text>
                     </View>
                     <TouchableOpacity onPress={() => Expendhandle(item.id)} style={styles.touchablemain}>
                         <Image source={selectedIdss == item.id ? Images.arrowup : Images.arrowdown} style={styles.img} />

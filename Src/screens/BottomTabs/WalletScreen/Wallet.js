@@ -316,7 +316,12 @@ const renderchains=({item,index})=>{
  
   return(
 
-      <View style={styles.listView}>
+      <TouchableOpacity   
+      onPress={() => props.navigation.navigate('History',{
+        mywalletaddress:walledAddress,
+        item:item
+      })}
+       style={styles.listView}>
      
         <View style={styles.listStyle}>
         {item.type == 'chain' ? (
@@ -373,7 +378,7 @@ const renderchains=({item,index})=>{
           ${item.dollorValue}
         </ResponsiveText>
       
-      </View>
+      </TouchableOpacity>
  
   )
 }
@@ -413,12 +418,12 @@ const renderchains=({item,index})=>{
                 ${mytotalbalnce}
               </ResponsiveText>
             </View>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={() => props.navigation.navigate('History',{
                 mywalletaddress:walledAddress
               })}>
               <Icon name="history" size={23} color="#000" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
         {/* end of current balance view */}

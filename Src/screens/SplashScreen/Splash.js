@@ -2,12 +2,23 @@ import {Image, useColorScheme, View, StatusBar} from 'react-native';
 import React, {useEffect} from 'react';
 import {Container, Images, ResponsiveText} from '../../components';
 import styles from './styles';
+import {CommonActions} from '@react-navigation/routers';
 
 export default function Splash(props) {
   useEffect(() => {
     setTimeout(() => {
-      props.navigation.navigate('Login');
-      
+ 
+      props.navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [
+            {
+              name: 'Login',
+              // name: "ProtectWallet"
+            },
+          ],
+        }),
+      );
       // props.navigation.navigate('DashboardTabNavigator');
     }, 3000);
   }, []);

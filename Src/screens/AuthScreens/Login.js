@@ -17,6 +17,7 @@ const Login = props => {
   const [errorMessage, seterrorMessage] = useState('');
   const [iserror, setiserror] = useState(false);
   const [Loading, setloading] = useState(false);
+  const [showpass, setshowpass] = useState(false);
   
   const usersignin=async()=>{
     let user={ user:{
@@ -36,7 +37,7 @@ const Login = props => {
  
       await login_User(user)
   .then((res) => {
-    console.log('response=====>>>>>',res);
+    console.log('respons====>>',res);
      
 
     if(res.status==200){
@@ -84,11 +85,13 @@ console.log('err',err.data.error);
                 autoCapitalize="none"
                 color={'#000'}
                 placeholder={'Password'}
-                secureTextEntry={true}
+                secureTextEntry={!showpass?true:false}
                 value={passwordInput}
                 onChangeText={passwordInput => {setPasswordInput(passwordInput),setiserror(false)}}
                 borderRadius={30}
                 backgroundColor={'#F1F1F5'}
+                rightIconName={showpass?'eye':'eye-off'}
+                righIconOnPress={()=>setshowpass(!showpass)}
               />
                  {iserror?
                <Text style={{color:'red',marginTop:40,alignSelf:'center'}}>

@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#eee',
     borderBottomWidth: 2,
     paddingBottom: 12,
+    marginTop:'20%'
   },
   optionContainer: {
     flexDirection: 'row',

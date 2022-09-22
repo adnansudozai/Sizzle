@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		044BC2CC28D8ECE50086D12B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1966A28D8E88F0064F927 /* main.m */; };
 		044BC2CD28D8ECF00086D12B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1966C28D8E8DF0064F927 /* AppDelegate.m */; };
+		0484258528DB841600C2F842 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 0484258428DB841600C2F842 /* www */; };
 		9CA99F0BF31A4B8589388480 /* libPods-Sizzle-SizzleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 557461E651054DC252985D7F /* libPods-Sizzle-SizzleTests.a */; };
 		B876D7F0EABB91C8552D26F3 /* libPods-Sizzle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0EAFC1431BF2FF5F58B145 /* libPods-Sizzle.a */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		044BC2CA28D8EC8A0086D12B /* Sizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		044BC2CB28D8EC8A0086D12B /* SizzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SizzleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0484258428DB841600C2F842 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		04E1966A28D8E88F0064F927 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Sizzle/main.m; sourceTree = "<group>"; };
 		04E1966C28D8E8DF0064F927 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04E1966E28D8E9480064F927 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		13B07FAE1A68108700A75B9A /* Sizzle */ = {
 			isa = PBXGroup;
 			children = (
+				0484258428DB841600C2F842 /* www */,
 				04E1967928D8EAFC0064F927 /* LaunchScreen.storyboard */,
 				04E1967728D8EAE40064F927 /* Images.xcassets */,
 				04E1967328D8EA820064F927 /* Info.plist */,
@@ -219,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0484258528DB841600C2F842 /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

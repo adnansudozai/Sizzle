@@ -86,8 +86,8 @@ const InputField = props => {
       )}
       {props.rightIconName && (
         <TouchableOpacity
-          style={{paddingRight: wp(1.8)}}
-          onPress={() => props.righIconOnPress()}>
+          style={{paddingRight: wp(2.8)}}
+          onPress={props.righIconOnPress}>
           <Icon
             name={props.rightIconName}
             size={props.righIconSize ? props.righIconSize : 25}
