@@ -10,7 +10,6 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import {
   Container,
   ResponsiveText,

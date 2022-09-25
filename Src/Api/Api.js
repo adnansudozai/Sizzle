@@ -127,3 +127,43 @@ export const update_profile = async(data) => {
 
 
 } 
+
+
+export const email_verification = async(data) => {
+
+
+  return new Promise((resolve, reject) => {
+  
+
+      try {
+
+        axios({
+          method: 'post',
+          url: BASE_URL + 'confirmation',
+          data: data,
+          headers: {
+            'accept': 'application/json',
+            'content-Type': 'application/json'
+          },
+        })
+          .then(async (response) => {
+            resolve(response)
+         
+          })
+          .catch((err) => {
+            reject(err.response)
+        console.log('responseerror catch',err);
+  
+          })
+      } catch (error) {
+        reject(error)
+        console.log('try catch',error);
+      }
+    })
+
+
+
+
+
+
+} 

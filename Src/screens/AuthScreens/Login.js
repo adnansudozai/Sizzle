@@ -37,7 +37,7 @@ const Login = props => {
  
       await login_User(user)
   .then((res) => {
-    console.log('respons====>>',res);
+    console.log('responsz====>>',res);
      
 
     if(res.status==200){

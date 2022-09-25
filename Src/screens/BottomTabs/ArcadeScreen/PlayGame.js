@@ -1,4 +1,6 @@
-import {View, Text, ScrollView, Image, FlatList} from 'react-native';
+import {View, Text, Image, FlatList} from 'react-native';
+import {ScrollView} from 'react-native-virtualized-view';
+
 import LinearGradient from 'react-native-linear-gradient';
 import {
   widthPercentageToDP as wp,

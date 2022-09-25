@@ -5,9 +5,9 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
-  ScrollView,
   Switch,
 } from 'react-native';
+import {ScrollView} from 'react-native-virtualized-view';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icons from 'react-native-vector-icons/Ionicons';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';

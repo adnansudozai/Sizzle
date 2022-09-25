@@ -3,7 +3,8 @@ import * as React from 'react';
 import {LogBox} from 'react-native';
 import Navigation from './Src/navigation';
 import './shim';
-
+import {Provider} from 'react-redux';
+import {store} from './Src/redux/store';
 const App = () => {
   const ReactNative = require('react-native');
   try {
@@ -12,7 +13,11 @@ const App = () => {
     console.log(e);
   }
   LogBox.ignoreAllLogs();
-  return <Navigation />;
+  return(
+    <Provider store={store}>
+     <Navigation />
+     </Provider>
+     )
 };
 
 export default App;

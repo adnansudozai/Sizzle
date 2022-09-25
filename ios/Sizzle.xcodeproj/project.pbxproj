@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		044BC2CC28D8ECE50086D12B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1966A28D8E88F0064F927 /* main.m */; };
 		044BC2CD28D8ECF00086D12B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1966C28D8E8DF0064F927 /* AppDelegate.m */; };
+		047E467E28DCECD700CC825B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E1967728D8EAE40064F927 /* Images.xcassets */; };
+		047E467F28DCECDF00CC825B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E1967928D8EAFC0064F927 /* LaunchScreen.storyboard */; };
 		0484258528DB841600C2F842 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 0484258428DB841600C2F842 /* www */; };
 		9CA99F0BF31A4B8589388480 /* libPods-Sizzle-SizzleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 557461E651054DC252985D7F /* libPods-Sizzle-SizzleTests.a */; };
 		B876D7F0EABB91C8552D26F3 /* libPods-Sizzle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0EAFC1431BF2FF5F58B145 /* libPods-Sizzle.a */; };
@@ -222,6 +224,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				047E467F28DCECDF00CC825B /* LaunchScreen.storyboard in Resources */,
+				047E467E28DCECD700CC825B /* Images.xcassets in Resources */,
 				0484258528DB841600C2F842 /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +431,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB77FEBFBC935447FF7BE2EF /* Pods-Sizzle.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HKGTDPP4ZS;
@@ -454,6 +460,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C0F58D5A0B92C13FDFE45145 /* Pods-Sizzle.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HKGTDPP4ZS;

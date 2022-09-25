@@ -17,12 +17,27 @@ import {
   GradientButton,
 } from '../../../../components';
 import styles from './styles';
+import ImagePicker from 'react-native-image-crop-picker';
+
 
 const Account = props => {
   const [name, setName] = useState('Wade Warren');
   const [email, setEmail] = useState('wade@mail.com');
   const [address, setAddress] = useState('33xnQfsadooX5e');
+  const [profileimage, setprofileimage] = useState('');
 
+  const choseimage = async() => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+      base64:true
+    }).then(image => {
+      console.log(image);
+      setprofileimage(image.path)
+    });
+   
+  }
   return (
     <Container backgroundColor={'white'}>
       <Header
@@ -38,12 +53,20 @@ const Account = props => {
               marginTop: hp(3),
               paddingHorizontal: 20,
             }}>
-            <View style={styles.profileView}>
-              <Image
+            <TouchableOpacity
+            onPress={()=>choseimage()}
+            style={styles.profileView}>
+             {profileimage==''? <Image
                 source={Images.profileImage}
-                style={{width: 100, height: 100, resizeMode: 'contain'}}
+                style={{width: 80, height: 80,borderRadius:2, resizeMode: 'stretch'}}
               />
-            </View>
+              :
+              <Image
+                source={{uri:profileimage}}
+                style={{width: 100, height: 100,borderRadius:100/2, resizeMode: 'stretch'}}
+              />
+          }
+            </TouchableOpacity>
             <View style={{marginTop: 25}}>
               <ResponsiveText
                 style={styles.inputLabel}>{`Full Name:`}</ResponsiveText>
