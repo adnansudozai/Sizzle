@@ -1,16 +1,18 @@
 import {
-  TOTALSCORE
+  USERDATA
 } from '../types';
 const initState = {
-  totalScore: 0,
+  userdata: [],
+  isLogin:false
 };
 const userdataReducer = (state = initState, action) => {
-  console.log('state of redux', state);
+
   switch (action.type) {
-    case TOTALSCORE:
+    case USERDATA:
       return {
         ...state,
-        totalScore: action.payload,
+        userdata: action.payload,
+        isLogin:true
       };
     default:
       return state;

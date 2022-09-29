@@ -11,7 +11,7 @@ export const store = createStore(
 )
 
 export const persistor = persistStore(store)
- 
+
 store.subscribe(() => {
   console.log('dispatch', store.getState())
 })

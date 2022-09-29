@@ -10,6 +10,9 @@ import {
 import {Container, ResponsiveText,Loader, InputField, Button} from '../../components';
 import styles from './styles';
 import { login_User } from '../../Api/Api';
+import {connect} from 'react-redux';
+import { saveUserdata } from '../../redux/actions/userDataAction';
+
 
 const Login = props => {
   const [emailInput, setEmailInput] = useState('');
@@ -18,7 +21,7 @@ const Login = props => {
   const [iserror, setiserror] = useState(false);
   const [Loading, setloading] = useState(false);
   const [showpass, setshowpass] = useState(false);
-  
+
   const usersignin=async()=>{
     let user={ user:{
       "email": emailInput,
@@ -29,36 +32,45 @@ const Login = props => {
       setiserror(true)
     } else if(!passwordInput) {
       seterrorMessage('Enter Password')
-      setiserror(true)
+       setiserror(true)
       
     }
     else{
-      setloading(true)
- 
-      await login_User(user)
-  .then((res) => {
-    console.log('responsz====>>',res);
-     
 
-    if(res.status==200){
-      props.navigation.navigate('PinScreen')
-    setloading(false)
-    console.log('loading=====>>>>>',Loading);
-
-    }
-    else{
-      console.log('else true');
-      setloading(false)
-    }
-
-  }).catch((err) => {
-    setloading(false)
-    seterrorMessage(err.data.error)
-    setiserror(true)
-console.log('err',err.data.error);
+try {
 
 
-  })
+      
+  setloading(true)
+  await login_User(user)
+.then((res) => {
+
+  console.log('loading=====>>>>>',res);
+
+if(res.status==200){
+  props.saveUserdata(res.data.user)
+  props.navigation.navigate('PinScreen')
+setloading(false)
+console.log('loading=====>>>>>',Loading);
+
+}
+else{
+  console.log('else true');
+  setloading(false)
+}
+
+}).catch((err) => {
+setloading(false)
+seterrorMessage(err.data.error)
+setiserror(true)
+console.log('err',err);
+
+
+})
+  
+} catch (error) {
+  console.log('error  try catch',error);
+}
     }
   }
 
@@ -137,4 +149,10 @@ console.log('err',err.data.error);
   );
 };
 
-export default Login;
+const mapDispatchToProps = dispatch => {
+  return {
+    saveUserdata: data => dispatch(saveUserdata(data)),
+  };
+};
+export default connect(null, mapDispatchToProps)(Login);
+

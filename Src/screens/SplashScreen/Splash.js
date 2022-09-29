@@ -1,27 +1,53 @@
-import {Image, useColorScheme, View, StatusBar} from 'react-native';
+
 import React, {useEffect} from 'react';
+import {Image, View} from 'react-native';
 import {Container, Images, ResponsiveText} from '../../components';
 import styles from './styles';
 import {CommonActions} from '@react-navigation/routers';
+import {connect} from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
 
-export default function Splash(props) {
+export default function Splash(props){
+  let userdata=useSelector(state => state)
+  console.log('lulu is true',userdata.userdataReducer.isLogin);
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
+
+ if (userdata.userdataReducer.isLogin) {
+  
  
+      props.navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [
+            {                                         
+              name: 'DashboardTabNavigator',
+            
+            },
+          ],
+        }),
+      );
+    }
+    else {
       props.navigation.dispatch(
         CommonActions.reset({
           index: 0,
           routes: [
             {
               name: 'Login',
-              // name: "ProtectWallet"
+          
             },
           ],
         }),
       );
+     
+  
+      }
       // props.navigation.navigate('DashboardTabNavigator');
-    }, 3000);
-  }, []);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [props.navigation]);
 
   return (
     <Container backgroundColor={'white'}>

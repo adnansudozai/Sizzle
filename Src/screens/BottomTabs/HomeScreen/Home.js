@@ -13,11 +13,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {openDatabase} from 'react-native-sqlite-storage';
 import Web3 from 'web3';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const Home = props => {
+  let userdata=useSelector(state => state)
 
 React.useEffect(() => {
   const unsubscribe = props.navigation.addListener('focus', () => {
+    console.log('userdata===',userdata );
   getCurrencyBalance();
   getTokenBalance();
   mybalancesum();

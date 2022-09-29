@@ -9,7 +9,9 @@ import {
 import {Container, ResponsiveText, InputField, Button,Loader} from '../../components';
 import styles from './styles';
 import { register_User } from '../../Api/Api';
+import {connect} from 'react-redux';
 import Toast from 'react-native-simple-toast';
+import { saveUserdata } from '../../redux/actions/userDataAction';
 const Register = props => {
 
 
@@ -54,7 +56,7 @@ let user={ user:{
 }
 await register_User(user)
   .then((res) => {
-    console.log(res.status,'res');
+    console.log(res.data.user,'res');
 if(res.status==200){
   setiserror(true)
   seterrormessage(res.data.message)
@@ -62,6 +64,7 @@ setloading(false)
 
 }
 else{
+  props.saveUserdata(res.data.user)
   setloading(false)
   Toast.show('Successfully Register!');
   props.navigation.navigate('PinScreen')
@@ -178,4 +181,10 @@ setloading(false)
   );
 };
 
-export default Register;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveUserdata: data => dispatch(saveUserdata(data)),
+  };
+};
+export default connect(null, mapDispatchToProps)(Register);

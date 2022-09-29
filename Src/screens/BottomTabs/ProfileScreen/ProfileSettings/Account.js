@@ -15,17 +15,24 @@ import {
   Images,
   InputField,
   GradientButton,
+  Loader
 } from '../../../../components';
 import styles from './styles';
 import ImagePicker from 'react-native-image-crop-picker';
-
-
+import { update_profile } from '../../../../Api/Api';
+import { useSelector } from 'react-redux';
 const Account = props => {
-  const [name, setName] = useState('Wade Warren');
-  const [email, setEmail] = useState('wade@mail.com');
-  const [address, setAddress] = useState('33xnQfsadooX5e');
+  let data=useSelector(state => state.userdataReducer)
+console.log('userdata',data.userdata.email);
+  const [name, setName] = useState(data.userdata.full_name?data.userdata.full_name:'');
+  const [email, setEmail] = useState(data.userdata.email?data.userdata.email:'');
+  const [address, setAddress] = useState(data.userdata.wallet_address?data.userdata.wallet_address:'');
   const [profileimage, setprofileimage] = useState('');
-
+  const [errormesssage, seterrormesssage] = useState('');
+  const [isError, setisError] = useState(false);
+  const [loading, setloading] = useState(false);
+  
+  
   const choseimage = async() => {
     ImagePicker.openPicker({
       width: 300,
@@ -34,10 +41,65 @@ const Account = props => {
       base64:true
     }).then(image => {
       console.log(image);
-      setprofileimage(image.path)
+      setprofileimage(image)
     });
-   
+
   }
+  const updatedata=async()=>{
+    if (!name) {
+      setisError(true)
+      seterrormesssage('Please Enter your Name')
+    } 
+    else if (!email) {
+      setisError(true)
+      seterrormesssage('Please Enter your email')
+    } 
+    
+    else {
+      const formData = new FormData();
+      formData.append("wallet_address", address);
+      formData.append("full_name", name);
+      formData.append("email", email);
+      if (profileimage != "") {
+   
+        formData.append("image", {
+          uri: profileimage.uri,
+          name: profileimage.fileName,
+          type: profileimage.type,
+        });
+      }
+
+
+
+      setloading(true)
+      await update_profile(formData)
+  .then((res) => {
+    console.log('responsz====>>',res);
+     
+
+    if(res.status==200){
+      // props.saveUserdata(res.data.user)
+      // props.navigation.navigate('PinScreen')
+    setloading(false)
+
+
+    }
+    else{
+      console.log('else true');
+      setloading(false)
+    }
+
+  }).catch((err) => {
+    setloading(false)
+    seterrormesssage(err.data.error)
+    setisError(true)
+console.log('err',err.data.error);
+
+
+  })
+
+    }
+        }
   return (
     <Container backgroundColor={'white'}>
       <Header
@@ -62,7 +124,7 @@ const Account = props => {
               />
               :
               <Image
-                source={{uri:profileimage}}
+                source={{uri:profileimage.path}}
                 style={{width: 100, height: 100,borderRadius:100/2, resizeMode: 'stretch'}}
               />
           }
@@ -104,9 +166,9 @@ const Account = props => {
                 autoCapitalize="none"
                 editable={false}
                 color={'#000'}
-                placeholder={''}
+                placeholder={'Wallet Address'}
                 value={address}
-                keyboardType="email-address"
+        
                 onChangeText={address => setAddress(address)}
                 backgroundColor={'#F1F1F5'}
                 marginTop={10}
@@ -117,6 +179,11 @@ const Account = props => {
                 customStyles={{color: '#A3A4AB'}}
               />
             </View>
+{isError?
+            <ResponsiveText
+                  style={{marginTop:10,color:'red',marginLeft: 10,}}>{errormesssage}</ResponsiveText>
+
+                  :null}
             <View style={styles.securityPreview}>
               <View>
                 <ResponsiveText
@@ -136,7 +203,7 @@ const Account = props => {
               </TouchableOpacity>
             </View>
             <GradientButton
-              onPress={() => {}}
+              onPress={() => updatedata()}
               title={'Save'}
               titleStyle={{fontSize: 4.5}}
               btnContainer={{
@@ -149,6 +216,8 @@ const Account = props => {
           </View>
         </View>
       </TouchableWithoutFeedback>
+      <Loader loading={loading} />
+
     </Container>
   );
 };

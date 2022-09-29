@@ -1,10 +1,10 @@
 import {
-  TOTALSCORE
+  USERDATA
 } from '../types';
 
-export const savePoints = data => {
+export const saveUserdata = data => {
   return {
-    type: TOTALSCORE,
+    type: USERDATA,
     payload: data,
   };
 };

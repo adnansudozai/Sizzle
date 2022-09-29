@@ -93,13 +93,13 @@ export const update_profile = async(data) => {
 
   return new Promise((resolve, reject) => {
       //  console.log('params',params)
-      console.log('url', BASE_URL+ 'sign_in',data)
+      console.log('url', BASE_URL+ 'users',data)
 
       try {
 
         axios({
-          method: 'post',
-          url: BASE_URL + 'sign_in',
+          method: 'put',
+          url: BASE_URL + 'users',
           data: data,
           headers: {
             'accept': 'application/json',
@@ -128,6 +128,84 @@ export const update_profile = async(data) => {
 
 } 
 
+export const reset_password = async(data) => {
+
+console.log('reset pass',data);
+  return new Promise((resolve, reject) => {
+  
+
+      try {
+
+        axios({
+          method: 'post',
+          url: BASE_URL + 'password',
+          data: data,
+          headers: {
+            'accept': 'application/json',
+            'content-Type': 'application/json'
+          },
+        })
+          .then(async (response) => {
+            resolve(response)
+         
+          })
+          .catch((err) => {
+            reject(err.response)
+        console.log('responseerror catch',err);
+  
+          })
+      } catch (error) {
+        reject(error)
+        console.log('try catch',error);
+      }
+    })
+
+
+
+
+
+
+} 
+
+export const new_password = async(data) => {
+
+
+  return new Promise((resolve, reject) => {
+  
+
+      try {
+
+        axios({
+          method: 'put',
+          url: BASE_URL + 'password',
+          data: data,
+          headers: {
+            'accept': 'application/json',
+            'content-Type': 'application/json'
+          },
+        })
+          .then(async (response) => {
+            resolve(response)
+         
+          })
+          .catch((err) => {
+            reject(err.response)
+        console.log('responseerror catch',err);
+  
+          })
+      } catch (error) {
+        reject(error)
+        console.log('try catch',error);
+      }
+    })
+{/*
+*/}
+
+
+
+
+
+} 
 
 export const email_verification = async(data) => {
 
