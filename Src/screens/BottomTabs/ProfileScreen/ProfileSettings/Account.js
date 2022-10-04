@@ -23,7 +23,7 @@ import { update_profile } from '../../../../Api/Api';
 import { useSelector } from 'react-redux';
 const Account = props => {
   let data=useSelector(state => state.userdataReducer)
-console.log('userdata',data.userdata.email);
+console.log('userdata',data.barerToken);
   const [name, setName] = useState(data.userdata.full_name?data.userdata.full_name:'');
   const [email, setEmail] = useState(data.userdata.email?data.userdata.email:'');
   const [address, setAddress] = useState(data.userdata.wallet_address?data.userdata.wallet_address:'');
@@ -72,7 +72,7 @@ console.log('userdata',data.userdata.email);
 
 
       setloading(true)
-      await update_profile(formData)
+      await update_profile(formData,data.barerToken)
   .then((res) => {
     console.log('responsz====>>',res);
      

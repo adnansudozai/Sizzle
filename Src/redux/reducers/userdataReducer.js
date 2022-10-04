@@ -3,7 +3,8 @@ import {
 } from '../types';
 const initState = {
   userdata: [],
-  isLogin:false
+  isLogin:false,
+  barerToken:''
 };
 const userdataReducer = (state = initState, action) => {
 
@@ -12,7 +13,8 @@ const userdataReducer = (state = initState, action) => {
       return {
         ...state,
         userdata: action.payload,
-        isLogin:true
+        isLogin:true,
+        barerToken:action.barerToken
       };
     default:
       return state;

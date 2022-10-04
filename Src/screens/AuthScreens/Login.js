@@ -48,7 +48,8 @@ try {
   console.log('loading=====>>>>>',res);
 
 if(res.status==200){
-  props.saveUserdata(res.data.user)
+  let bartoken=res.headers.authorization.slice(6,res.headers.authorization.length)
+  props.saveUserdata(res.data.user, bartoken)
   props.navigation.navigate('PinScreen')
 setloading(false)
 console.log('loading=====>>>>>',Loading);
@@ -151,7 +152,7 @@ console.log('err',err);
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveUserdata: data => dispatch(saveUserdata(data)),
+    saveUserdata: (data,token) => dispatch(saveUserdata(data,token)),
   };
 };
 export default connect(null, mapDispatchToProps)(Login);

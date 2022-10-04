@@ -88,12 +88,12 @@ export const login_User = async(data) => {
 
 
 
-export const update_profile = async(data) => {
+export const update_profile = async(data,token) => {
 
 
   return new Promise((resolve, reject) => {
       //  console.log('params',params)
-      console.log('url', BASE_URL+ 'users',data)
+      console.log('url', BASE_URL+ 'users',data,'\ntoken',token)
 
       try {
 
@@ -103,7 +103,8 @@ export const update_profile = async(data) => {
           data: data,
           headers: {
             'accept': 'application/json',
-            'content-Type': 'application/json'
+            'content-Type': 'application/json',
+          'Authorization': 'Bearer '+token
           },
         })
           .then(async (response) => {
