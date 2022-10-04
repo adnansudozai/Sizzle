@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
   profileView: {
     marginTop: hp(2),
     alignItems: 'center',
+    borderWidth:0,
+    width:100,
+    height:100,
+    alignSelf:'center',
+    borderRadius:100/2
   },
   inputLabel: {
     fontSize: 4.2,

@@ -18,7 +18,7 @@ import {
   ResponsiveText,
   Header,
   Images,
-  GradientButton,
+  Button,
 } from '../../../../components';
 import styles from './styles';
 
@@ -120,16 +120,15 @@ const [myreferalcode,setmyreferalcode]=useState('WADEF5RCT3T4DF3')
                 <Icon name={'content-copy'} size={25} color={'#A3A4AB'} />
               </TouchableOpacity>
             </View>
-            <GradientButton
-              onPress={() => onSubmit()}
+            <Button
               title={'Share'}
+              onPress={()=>onSubmit()}
               titleStyle={{fontSize: 4.5}}
               btnContainer={{
-                borderRadius: 15,
-                marginTop: 15,
+                borderRadius: 5,
+                marginTop: 30,
+                borderRadius: 30,
               }}
-              gradientColor={['#163272', '#4674c3']}
-              shadowColor="#BCC9E4"
             />
             <View style={{marginVertical: hp(8)}}>
               <ResponsiveText

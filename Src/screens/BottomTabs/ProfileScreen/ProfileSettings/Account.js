@@ -14,19 +14,22 @@ import {
   Header,
   Images,
   InputField,
-  GradientButton,
+  Button,
   Loader
 } from '../../../../components';
 import styles from './styles';
+import Toast from 'react-native-simple-toast';
 import ImagePicker from 'react-native-image-crop-picker';
 import { update_profile } from '../../../../Api/Api';
 import { useSelector } from 'react-redux';
+import {connect} from 'react-redux';
+import {saveUserdata} from '../../../../redux/actions/userDataAction'
 const Account = props => {
   let data=useSelector(state => state.userdataReducer)
-console.log('userdata',data.barerToken);
+console.log('userdata',data);
   const [name, setName] = useState(data.userdata.full_name?data.userdata.full_name:'');
   const [email, setEmail] = useState(data.userdata.email?data.userdata.email:'');
-  const [address, setAddress] = useState(data.userdata.wallet_address?data.userdata.wallet_address:'');
+  const [address, setAddress] = useState(data.userdata.wallet_address?data.userdata.wallet_address:'0X1234');
   const [profileimage, setprofileimage] = useState('');
   const [errormesssage, seterrormesssage] = useState('');
   const [isError, setisError] = useState(false);
@@ -57,16 +60,20 @@ console.log('userdata',data.barerToken);
     
     else {
       const formData = new FormData();
-      formData.append("wallet_address", address);
-      formData.append("full_name", name);
-      formData.append("email", email);
+      formData.append("user[wallet_address]", address);
+      formData.append("user[full_name]", name);
+      formData.append("user[email]", email);
       if (profileimage != "") {
-   
-        formData.append("image", {
-          uri: profileimage.uri,
-          name: profileimage.fileName,
-          type: profileimage.type,
-        });
+
+        var photo = {
+          uri: profileimage.path,
+          type: profileimage.mime,
+          name: 'photo.jpg',
+      };
+
+      formData.append("user[image]", photo);
+
+
       }
 
 
@@ -77,9 +84,10 @@ console.log('userdata',data.barerToken);
     console.log('responsz====>>',res);
      
 
-    if(res.status==200){
-      // props.saveUserdata(res.data.user)
-      // props.navigation.navigate('PinScreen')
+    if(res.status==201){
+      props.saveUserdata(res.data.user, data.barerToken)
+     props.navigation.navigate('DashboardTabNavigator')
+     Toast.show('Record Updated!', Toast.LONG);
     setloading(false)
 
 
@@ -115,20 +123,33 @@ console.log('err',err.data.error);
               marginTop: hp(3),
               paddingHorizontal: 20,
             }}>
+              {profileimage==''?
             <TouchableOpacity
             onPress={()=>choseimage()}
             style={styles.profileView}>
-             {profileimage==''? <Image
+             {!data.userdata.image_url? <Image
                 source={Images.profileImage}
-                style={{width: 80, height: 80,borderRadius:2, resizeMode: 'stretch'}}
+                style={{width: 80, height: 80,borderRadius:2, resizeMode: 'cover'}}
               />
               :
               <Image
-                source={{uri:profileimage.path}}
-                style={{width: 100, height: 100,borderRadius:100/2, resizeMode: 'stretch'}}
+                source={{uri:data.userdata.image_url}}
+                style={{width: 100, height: 100,borderRadius:100/2, resizeMode: 'cover'}}
               />
           }
             </TouchableOpacity>
+:
+            <TouchableOpacity
+            onPress={()=>choseimage()}
+            style={styles.profileView}>
+          
+              <Image
+                source={{uri:profileimage.path}}
+                style={{width: 100, height: 100,borderRadius:100/2, resizeMode: 'cover'}}
+              />
+          
+            </TouchableOpacity>
+            }
             <View style={{marginTop: 25}}>
               <ResponsiveText
                 style={styles.inputLabel}>{`Full Name:`}</ResponsiveText>
@@ -202,16 +223,15 @@ console.log('err',err.data.error);
                 <Icon name={'chevron-right'} size={25} color={'#A3A4AB'} />
               </TouchableOpacity>
             </View>
-            <GradientButton
-              onPress={() => updatedata()}
+            <Button
               title={'Save'}
+              onPress={()=>updatedata()}
               titleStyle={{fontSize: 4.5}}
               btnContainer={{
-                borderRadius: 15,
-                marginTop: 40,
+                borderRadius: 5,
+                marginTop: 30,
+                borderRadius: 30,
               }}
-              gradientColor={['#163272', '#4674c3']}
-              shadowColor="#BCC9E4"
             />
           </View>
         </View>
@@ -222,4 +242,10 @@ console.log('err',err.data.error);
   );
 };
 
-export default Account;
+const mapDispatchToProps = dispatch => {
+  return {
+    saveUserdata: (data,token) => dispatch(saveUserdata(data,token)),
+  };
+};
+export default connect(null, mapDispatchToProps)(Account);
+

@@ -91,6 +91,7 @@ export const login_User = async(data) => {
 export const update_profile = async(data,token) => {
 
 
+
   return new Promise((resolve, reject) => {
       //  console.log('params',params)
       console.log('url', BASE_URL+ 'users',data,'\ntoken',token)
@@ -102,8 +103,8 @@ export const update_profile = async(data,token) => {
           url: BASE_URL + 'users',
           data: data,
           headers: {
-            'accept': 'application/json',
-            'content-Type': 'application/json',
+            'accept': 'multipart/form-data',
+            'content-Type': 'multipart/form-data',
           'Authorization': 'Bearer '+token
           },
         })

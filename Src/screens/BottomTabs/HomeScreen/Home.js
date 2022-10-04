@@ -16,7 +16,7 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 const Home = props => {
-  let userdata=useSelector(state => state)
+  let userdata=useSelector(state => state.userdataReducer)
 
 React.useEffect(() => {
   const unsubscribe = props.navigation.addListener('focus', () => {
@@ -340,8 +340,12 @@ React.useEffect(() => {
   return (
     <Container backgroundColor={'white'}>
       <View style={styles.headerView}>
-        <TouchableOpacity style={{alignSelf: 'center'}}>
-          <Image source={Images.profile} style={{width: 50, height: 50}} />
+        <TouchableOpacity style={{alignSelf: 'center',width: 50, height: 50,borderRadius:50/2,resizeMode:'cover'}}>
+          {userdata.userdata.image_url?
+          <Image source={{uri:userdata.userdata.image_url}} style={{width: 50, height: 50,borderRadius:50/2,resizeMode:'cover'}} />
+          :
+          <Image source={Images.profile} style={{width: 50, height: 50,borderRadius:50/2,resizeMode:'cover'}} />
+}
         </TouchableOpacity>
         <TouchableOpacity style={{alignSelf: 'center'}}>
           <Icon name="bell-outline" size={25} color="#000" />

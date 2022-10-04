@@ -17,11 +17,14 @@ import {
   GradientButton,
   Images,
 } from '../../../components';
+import { useSelector } from 'react-redux';
+
 import { commify } from 'ethers/lib/utils';
 
 const Profile = props => {
   const [theme, setTheme] = useState('LIGHT');
-   
+  let data=useSelector(state => state.userdataReducer)
+  console.log('userdata',data);
   const settingItemsData = [
     {
       icon: 'bell-outline',
@@ -90,10 +93,20 @@ const Profile = props => {
       <ScrollView>
         <View style={styles.mainContainer}>
           <View style={styles.profileView}>
+{data.userdata.image_url?
+
             <Image
-              source={Images.profileImage}
-              style={{width: 100, height: 100, resizeMode: 'contain'}}
+              source={{uri:data.userdata.image_url}}
+              style={{width: 100, height: 100,borderRadius:100/2, resizeMode: 'cover'}}
             />
+
+            :
+            <Image
+            source={Images.profileImage}
+            style={{width: 100, height: 100,borderRadius:100/2, resizeMode: 'cover'}}
+          />
+            
+            }
           </View>
           <View
             style={{
@@ -106,17 +119,18 @@ const Profile = props => {
                   <ResponsiveText
                     style={
                       styles.previewNameText
-                    }>{`Wade Warren`}</ResponsiveText>
-                  <Icon name={'check-circle'} size={15} color="#194AA1" />
+                    }>{data.userdata.full_name?data.userdata.full_name:'Hello jack'}</ResponsiveText>
+               {data.userdata.isverified?  <Icon name={'check-circle'} size={15} color="#194AA1" />
+               :null}
                 </View>
                 <ResponsiveText
                   style={
                     styles.otherPreviewItem
-                  }>{`33xnQfsadooX5e`}</ResponsiveText>
+                  }>{data.userdata.wallet_address?data.userdata.wallet_address:'wallet addres'}</ResponsiveText>
                 <ResponsiveText
                   style={
                     styles.otherPreviewItem
-                  }>{`wade@mail.com`}</ResponsiveText>
+                  }>{data.userdata.email?data.userdata.email:'email'}</ResponsiveText>
               </View>
               <TouchableOpacity
                 onPress={() => props.navigation.navigate('ProfileSettings')}>

@@ -24,7 +24,9 @@ const Stack = createStackNavigator();
 
 const ProfileSettingsStack = () => {
   return (
-    <Stack.Navigator headerMode="none">
+    <Stack.Navigator 
+    screenOptions={{ headerShown: false }}
+    >
       <Stack.Screen name="settingsAccount" component={Account} />
       <Stack.Screen
         name="settingsAccountSecurity"
@@ -47,7 +49,9 @@ const ProfileSettingsStack = () => {
 
 const MainStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Splash" headerMode="none">
+    <Stack.Navigator initialRouteName="Splash" 
+    screenOptions={{ headerShown: false }}
+    >
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Register" component={Register} />
