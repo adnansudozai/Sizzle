@@ -323,3 +323,43 @@ export const email_verification = async(data) => {
 
 
 } 
+
+export const change_password = async(data,token) => {
+
+  console.log('reset pass',data,token);
+    return new Promise((resolve, reject) => {
+    
+  
+        try {
+  
+          axios({
+            method: 'put',
+            url: BASE_URL + 'update-password',
+            data: data,
+            headers: {
+              'accept': 'multipart/form-data',
+              'content-Type': 'multipart/form-data',
+              'Authorization': 'Bearer'+token
+            },
+          })
+            .then(async (response) => {
+              resolve(response)
+           
+            })
+            .catch((err) => {
+              reject(err.response)
+          console.log('responseerror catch',err);
+    
+            })
+        } catch (error) {
+          reject(error)
+          console.log('try catch',error);
+        }
+      })
+  
+  
+  
+  
+  
+  
+  } 

@@ -3,24 +3,73 @@ import {
   View,
   TouchableWithoutFeedback,
   Keyboard,
-  Pressable,
-  TouchableOpacity,
   Text
 } from 'react-native';
 import {Container, ResponsiveText,Loader, InputField, Button} from '../../components';
 import styles from './styles';
-import { login_User,Userlogin } from '../../Api/Api';
-import {connect} from 'react-redux';
-import { saveUserdata } from '../../redux/actions/userDataAction';
+import {change_password } from '../../Api/Api';
+import Toast from 'react-native-simple-toast';
+import { useSelector } from 'react-redux';
 
-const Changepassword = (props) => {
+const Changepassword =(props) => {
     const [confirmpasswordInput, setconfirmpasswordInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
   const [showpass, setshowpass] = useState(false);
   const [showconfpass, setshowconfpass] = useState(false);
   const [errorMessage, seterrorMessage] = useState('');
   const [iserror, setiserror] = useState(false);
-const changepass=()=>{
+  const [Loading, setloading] = useState(false);
+
+  let data=useSelector(state => state.userdataReducer)
+
+const changepass=async()=>{
+    if (!passwordInput) {
+        setiserror(true)
+        seterrorMessage('Enter Password')
+    }
+    else if (!confirmpasswordInput) {
+        seterrorMessage('Enter confirm Password')
+        setiserror(true)
+
+    }
+    else if (passwordInput!=confirmpasswordInput) {
+        seterrorMessage(`Password can't match`)
+        setiserror(true)
+
+    }
+    
+    else {
+try {
+    const formData = new FormData();
+    formData.append("user[password]", passwordInput);
+    formData.append("user[password_confirmation]", confirmpasswordInput);
+    setloading(true)
+    await change_password(formData,data.barerToken)
+.then((res) => {
+    console.log('res====',res);
+if(res.status==201){
+    setloading(false)
+    props.navigation.navigate('DashboardTabNavigator')
+    Toast.show('Password Change!', Toast.LONG);
+}
+else{
+
+    setloading(false)
+
+}
+
+
+})
+
+} catch (error) {
+    console.log('catch error',error);
+    setloading(false)
+
+}
+
+      
+        
+    }
 
 }
   return (
@@ -37,7 +86,7 @@ const changepass=()=>{
               placeholder={'New Password'}
               secureTextEntry={!showpass?true:false}
               value={confirmpasswordInput}
-              onChangeText={passwordInput => setconfirmpasswordInput(passwordInput)}
+              onChangeText={passwordInput => {setconfirmpasswordInput(passwordInput),setiserror(false)}}
               borderRadius={30}
               backgroundColor={'#F1F1F5'}
               rightIconName={showpass?'eye':'eye-off'}
@@ -51,7 +100,8 @@ const changepass=()=>{
             value={passwordInput}
             placeholder={'Confirm new Password'}
             secureTextEntry={!showconfpass?true:false}
-            onChangeText={emailInput => setPasswordInput(emailInput)}
+       
+        onChangeText={emailInput => {setPasswordInput(emailInput), setiserror(false)}}
             borderRadius={30}
             backgroundColor={'#F1F1F5'}
             rightIconName={showconfpass?'eye':'eye-off'}
@@ -83,7 +133,7 @@ const changepass=()=>{
       </View>
      
     </TouchableWithoutFeedback>
-    {/* <Loader loading={Loading} /> */}
+    <Loader loading={Loading} />
   </Container>
   )
 }
