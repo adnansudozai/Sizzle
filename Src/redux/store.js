@@ -1,17 +1,16 @@
-import logger from 'redux-logger'
-import thunk from 'redux-thunk'
-import rootReducer from './reducers/RootReducer'
-import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import { persistStore } from 'redux-persist'
 
-export const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(logger, thunk)),
-)
+import rootReducers from './reducers/RootReducer'
+import { createStore } from 'redux'
+import { persistStore, persistReducer } from 'redux-persist'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export const persistor = persistStore(store)
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['userdataReducer'],
+}
 
-store.subscribe(() => {
-  console.log('dispatch', store.getState())
-})
+const persistedReducer = persistReducer(persistConfig, rootReducers)
+const store = createStore(persistedReducer)
+const persistor = persistStore(store)
+export { store, persistor }

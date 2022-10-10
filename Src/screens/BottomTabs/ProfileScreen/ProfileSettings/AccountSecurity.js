@@ -33,7 +33,7 @@ const AccountSecurity = props => {
               styles.securityInfoText
             }>{`In this section you will be able to set the account security`}</ResponsiveText>
           <View>
-            <View style={styles.securityItem}>
+            <TouchableOpacity onPress={()=>props.navigation.navigate('Changepassword')} style={styles.securityItem}>
               <View>
                 <ResponsiveText
                   style={
@@ -42,12 +42,12 @@ const AccountSecurity = props => {
                 <ResponsiveText
                   style={
                     styles.securityItemSubtitle
-                  }>{`*********5rW`}</ResponsiveText>
+                  }>{`*********`}</ResponsiveText>
               </View>
               <TouchableOpacity onPress={() => {}}>
                 <Icon name={'chevron-right'} size={25} color={'#A3A4AB'} />
               </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
             <View style={styles.securityItem}>
               <View>
                 <ResponsiveText

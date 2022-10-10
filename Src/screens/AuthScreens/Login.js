@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {Container, ResponsiveText,Loader, InputField, Button} from '../../components';
 import styles from './styles';
-import { login_User } from '../../Api/Api';
+import { login_User,Userlogin } from '../../Api/Api';
 import {connect} from 'react-redux';
 import { saveUserdata } from '../../redux/actions/userDataAction';
 
@@ -50,6 +50,7 @@ try {
 if(res.status==200){
   let bartoken=res.headers.authorization.slice(6,res.headers.authorization.length)
   props.saveUserdata(res.data.user, bartoken)
+  Userlogin(true)
   props.navigation.navigate('PinScreen')
 setloading(false)
 console.log('loading=====>>>>>',Loading);

@@ -19,6 +19,7 @@ import Forgotpassword from '../screens/AuthScreens/Forgotpassword';
 import Notification from '../screens/BottomTabs/ProfileScreen/Notification/Notification';
 import FAQ from '../screens/BottomTabs/ProfileScreen/Helpcenter/FAQ';
 import Community from '../screens/BottomTabs/ProfileScreen/ProfileSettings/Community/Community';
+import Changepassword from '../screens/Changepassword/Changepassword';
 const Stack = createStackNavigator();
 
 
@@ -62,6 +63,7 @@ const MainStack = () => {
       <Stack.Screen name="WithdrawScreen" component={WithdrawScreen} />
       <Stack.Screen name="WithdrawConfirm" component={WithdrawConfirmScreen} />
       <Stack.Screen name="ProfileSettings" component={ProfileSettingsStack} />
+      <Stack.Screen name="Changepassword" component={Changepassword} />
       <Stack.Screen
         name="DashboardTabNavigator"
         component={DashboardTabNavigator}

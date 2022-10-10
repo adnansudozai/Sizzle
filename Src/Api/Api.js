@@ -3,8 +3,84 @@
 
 
 import axios from 'axios'
-
+import {openDatabase} from 'react-native-sqlite-storage';
 const BASE_URL=`https://api-sizzle.herokuapp.com/api/v1/`
+
+
+export const Userlogin=(isLogin)=>{
+
+  const db = openDatabase(
+    {name: 'sizzleWallet.db', createFromLocation: 1},
+    successCB,
+    errorCB,
+    openCB,
+  );
+  
+  const errorCB = err => {
+    console.log('SQL Error: ' + err);
+  };
+  
+  const successCB = () => {
+    console.log('SQL executed fine');
+  };
+  const openCB = () => {
+    console.log('Database OPENED');
+  };
+  db.transaction(tx => {
+    tx.executeSql(
+      'UPDATE Users set isLogin=?  where id=?',
+      [
+      isLogin,
+      1
+      ],
+      (tx, resul) => {
+        if (resul.rowsAffected > 0) {
+         return 'Result Updated'
+        } else {
+         return 'Fail to Updated'
+
+        }
+      },
+    );
+  });
+
+
+
+}
+
+export const checkUserLogin=(callback)=>{
+
+const db = openDatabase(
+  {name: 'sizzleWallet.db', createFromLocation: 1},
+  successCB,
+  errorCB,
+  openCB,
+);
+
+const errorCB = err => {
+  console.log('SQL Error: ' + err);
+};
+
+const successCB = () => {
+  console.log('SQL executed fine');
+};
+const openCB = () => {
+  console.log('Database OPENED');
+};
+
+console.log('czlll');
+  db.transaction(tx => {
+    tx.executeSql(
+      'SELECT * FROM Users',[],
+      (tx, resul) => {
+       
+        callback(resul.rows.item(0).isLogin)
+       
+      },
+    );
+  });
+
+}
 
 export const register_User = async(data) => {
 

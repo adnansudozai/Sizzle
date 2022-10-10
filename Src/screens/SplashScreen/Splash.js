@@ -7,16 +7,18 @@ import {CommonActions} from '@react-navigation/routers';
 import {connect} from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
-
+import { checkUserLogin } from '../../Api/Api';
 export default function Splash(props){
   let userdata=useSelector(state => state)
-  console.log('lulu is true',userdata.userdataReducer.isLogin);
+  let isLogin=checkUserLogin()
+
   useEffect(() => {
     const timer = setTimeout(() => {
 
- if (userdata.userdataReducer.isLogin) {
-  
- 
+      checkUserLogin((res)=>{
+        console.log('Is Login',res);
+      
+ if(res==true){
       props.navigation.dispatch(
         CommonActions.reset({
           index: 0,
@@ -44,6 +46,7 @@ export default function Splash(props){
      
   
       }
+    })
       // props.navigation.navigate('DashboardTabNavigator');
     }, 2000);
     return () => clearTimeout(timer);

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {Container, ResponsiveText, InputField, Button,Loader} from '../../components';
 import styles from './styles';
-import { register_User } from '../../Api/Api';
+import { register_User,Userlogin } from '../../Api/Api';
 import {connect} from 'react-redux';
 import Toast from 'react-native-simple-toast';
 import { saveUserdata } from '../../redux/actions/userDataAction';
@@ -65,6 +65,8 @@ setloading(false)
 }
 else{
   props.saveUserdata(res.data.user)
+  Userlogin(true)
+
   setloading(false)
   Toast.show('Successfully Register!');
   props.navigation.navigate('PinScreen')

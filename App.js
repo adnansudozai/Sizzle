@@ -4,6 +4,7 @@ import Navigation from './Src/navigation';
 import {Provider} from 'react-redux';
 import {store} from './Src/redux/store';
 
+
 const App = () => {
   const ReactNative = require('react-native');
   try {
