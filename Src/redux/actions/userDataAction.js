@@ -1,5 +1,6 @@
 import {
-  USERDATA
+  USERDATA,
+  USERPIN
 } from '../types';
 
 export const saveUserdata = (data,barerToken) => {
@@ -8,5 +9,14 @@ export const saveUserdata = (data,barerToken) => {
     type: USERDATA,
     payload: data,
     barerToken:barerToken
+  };
+};
+
+export const saveuserpin = (data) => {
+  console.log('data',data);
+  return {
+    type: USERPIN,
+    payload: data,
+
   };
 };

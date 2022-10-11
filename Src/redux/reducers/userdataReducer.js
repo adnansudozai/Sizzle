@@ -1,10 +1,12 @@
 import {
-  USERDATA
+  USERDATA,
+  USERPIN
 } from '../types';
 const initState = {
   userdata: [],
   isLogin:false,
-  barerToken:''
+  barerToken:'',
+  userpin:''
 };
 const userdataReducer = (state = initState, action) => {
 
@@ -16,6 +18,12 @@ const userdataReducer = (state = initState, action) => {
         isLogin:true,
         barerToken:action.barerToken
       };
+      case USERPIN:
+        return {
+          ...state,
+          userpin: action.payload,
+        
+        };
     default:
       return state;
   }

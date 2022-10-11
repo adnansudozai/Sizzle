@@ -3,6 +3,7 @@ import * as React from 'react';
 import Navigation from './Src/navigation';
 import {Provider} from 'react-redux';
 import {store} from './Src/redux/store';
+import {LogBox} from 'react-native';
 
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
   } catch (e) {
     console.log(e);
   }
+  LogBox.ignoreAllLogs();//Hide all warning notifications on front-end
 
   return(
     <Provider 

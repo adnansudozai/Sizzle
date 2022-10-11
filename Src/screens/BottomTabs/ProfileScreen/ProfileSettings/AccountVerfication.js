@@ -16,13 +16,67 @@ import {
   Header,
   Images,
   InputField,
-  GradientButton,
+  Button,
 } from '../../../../components';
+import { email_verification,verifay_authcode } from '../../../../Api/Api';
+import { useSelector } from 'react-redux';
 
 const AccountVerfication = props => {
-  const [password, setPassword] = useState('');
+  const [verifay, setverifay] = useState(false);
   const [email, setEmail] = useState('');
   const [authCode, setAuthCode] = useState('');
+  const [error, seterror] = useState(false);
+  const [errormessage, seterrormessage] = useState('');
+  let userdata=useSelector(state => state.userdataReducer)
+
+  const getvirifaycode=async()=>{
+if (!email) {
+  seterror(true)
+  seterrormessage('Enter Email')
+} else {
+
+  try {
+    let data={
+      user:{
+        "email":email
+
+    }
+    }
+    await email_verification(data, userdata.barerToken).then((res)=>{
+      console.log('ressssssss',res);
+      setverifay(true)
+    }).catch((error)=>{
+      console.log('error is',error);
+
+    })
+    
+  } catch (error) {
+    console.log('catch error',error);
+  }
+}
+  }
+  const verifaycode=async()=>{
+    if (!authCode) {
+      seterror(true)
+      seterrormessage('Enter Auth code')
+    } else {
+      try {
+        let data={confirmation_token:authCode }
+        await verifay_authcode(data, userdata.barerToken).then((res)=>{
+          console.log('ressssssss',res);
+         
+        }).catch((error)=>{
+          console.log('error is',error);
+          setverifay(false)
+    
+        })
+        
+      } catch (error) {
+        console.log('catch error',error);
+      } 
+      
+    }
+      }
   return (
     <Container backgroundColor={'white'}>
       <Header
@@ -38,16 +92,17 @@ const AccountVerfication = props => {
               marginTop: hp(6),
               paddingHorizontal: 20,
             }}>
+              {!verifay?
             <View style={{marginTop: 10}}>
               <ResponsiveText
                 style={[styles.inputLabel]}>{`Email`}</ResponsiveText>
               <InputField
                 autoCapitalize="none"
                 color={'#000'}
-                placeholder={''}
+                placeholder={'Enter Email'}
                 value={email}
                 keyboardType="email-address"
-                onChangeText={email => setEmail(email)}
+                onChangeText={email => {setEmail(email),seterror(false)}}
                 backgroundColor={'#fff'}
                 customStyles={{
                   borderColor: '#eee',
@@ -57,25 +112,7 @@ const AccountVerfication = props => {
                 marginTop={10}
               />
             </View>
-            <View style={{marginTop: 30}}>
-              <ResponsiveText
-                style={styles.inputLabel}>{`Password:`}</ResponsiveText>
-              <InputField
-                autoCapitalize="none"
-                color={'#000'}
-                placeholder={''}
-                value={password}
-                keyboardType="email-address"
-                onChangeText={password => setPassword(password)}
-                backgroundColor={'#fff'}
-                customStyles={{
-                  borderColor: '#eee',
-                  borderWidth: 1,
-                  borderRadius: 15,
-                }}
-                marginTop={10}
-              />
-            </View>
+       :
             <View style={{marginTop: 30}}>
               <ResponsiveText
                 style={
@@ -84,10 +121,10 @@ const AccountVerfication = props => {
               <InputField
                 autoCapitalize="none"
                 color={'#000'}
-                placeholder={''}
+                placeholder={'Enter Code here'}
                 value={authCode}
                 keyboardType="email-address"
-                onChangeText={authCode => setAuthCode(authCode)}
+                onChangeText={authCode => {setAuthCode(authCode),seterror(false)}}
                 backgroundColor={'#fff'}
                 customStyles={{
                   borderColor: '#eee',
@@ -96,21 +133,48 @@ const AccountVerfication = props => {
                 }}
                 marginTop={10}
               />
+              {error?
+                <ResponsiveText
+                style={{marginTop:20,alignSelf: 'center',color:'red'}}>{errormessage}</ResponsiveText>
+             :null}
             </View>
-            <GradientButton
-              onPress={() => {}}
-              title={'Submit'}
-              titleStyle={{fontSize: 4.5}}
-              btnContainer={{
-                borderRadius: 15,
-                marginTop: hp(28),
-              }}
-              gradientColor={['#163272', '#4674c3']}
-              shadowColor="#BCC9E4"
-            />
+
+              }
+         
           </View>
+         
         </View>
       </TouchableWithoutFeedback>
+      {!verifay?
+        <View style={{position:"absolute",bottom:'10%',alignSelf:"center",alignItems:'center'}}>
+
+              <Button
+              title={'Get Code'}
+              onPress={()=>getvirifaycode()}
+              titleStyle={{fontSize: 4.5}}
+              btnContainer={{
+                borderRadius: 5,
+                borderRadius: 30,
+          
+              }}
+            />
+            </View>
+           
+            :
+        <View style={{position:"absolute",bottom:'10%',alignSelf:"center",alignItems:'center'}}>
+
+            <Button
+              title={'Verifay'}
+              onPress={()=>verifaycode()}
+              titleStyle={{fontSize: 4.5}}
+              btnContainer={{
+                borderRadius: 5,
+                borderRadius: 30,
+          
+              }}
+            />
+            </View>
+            }
     </Container>
   );
 };

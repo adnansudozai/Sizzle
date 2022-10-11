@@ -68,11 +68,11 @@ const openCB = () => {
   console.log('Database OPENED');
 };
 
-console.log('czlll');
   db.transaction(tx => {
     tx.executeSql(
       'SELECT * FROM Users',[],
       (tx, resul) => {
+console.log('czlll',resul);
        
         callback(resul.rows.item(0).isLogin)
        
@@ -259,7 +259,8 @@ export const new_password = async(data) => {
           data: data,
           headers: {
             'accept': 'application/json',
-            'content-Type': 'application/json'
+            'content-Type': 'application/json',
+           
           },
         })
           .then(async (response) => {
@@ -278,45 +279,6 @@ export const new_password = async(data) => {
     })
 {/*
 */}
-
-
-
-
-
-} 
-
-export const email_verification = async(data) => {
-
-
-  return new Promise((resolve, reject) => {
-  
-
-      try {
-
-        axios({
-          method: 'post',
-          url: BASE_URL + 'confirmation',
-          data: data,
-          headers: {
-            'accept': 'application/json',
-            'content-Type': 'application/json'
-          },
-        })
-          .then(async (response) => {
-            resolve(response)
-         
-          })
-          .catch((err) => {
-            reject(err.response)
-        console.log('responseerror catch',err);
-  
-          })
-      } catch (error) {
-        reject(error)
-        console.log('try catch',error);
-      }
-    })
-
 
 
 
@@ -363,3 +325,126 @@ export const change_password = async(data,token) => {
   
   
   } 
+
+
+export const email_verification = async(data,token) => {
+
+console.log(data,token);
+  return new Promise((resolve, reject) => {
+  
+
+      try {
+
+        axios({
+          method: 'post',
+          url: BASE_URL + 'confirmation',
+          data: data,
+          headers: {
+            'accept': 'application/json',
+            'content-Type': 'application/json',
+            'Authorization': 'Bearer '+token
+          },
+        })
+          .then(async (response) => {
+            resolve(response)
+         
+          })
+          .catch((err) => {
+            reject(err.response)
+        console.log('responseerror catch',err);
+  
+          })
+      } catch (error) {
+        reject(error)
+        console.log('try catch',error);
+      }
+    })
+
+
+
+
+
+
+} 
+
+
+export const verifay_authcode = async(data,token) => {
+
+console.log('data,token',data,token);
+  return new Promise((resolve, reject) => {
+  
+
+      try {
+
+        axios({
+          method: 'get',
+          url: BASE_URL + 'confirmation',
+          data: data,
+          headers: {
+            'accept': 'application/json',
+            'content-Type': 'application/json',
+            'Authorization': 'Bearer '+token
+          },
+        })
+          .then(async (response) => {
+            resolve(response)
+         
+          })
+          .catch((err) => {
+            reject(err.response)
+        console.log('responseerror catch',err);
+  
+          })
+      } catch (error) {
+        reject(error)
+        console.log('try catch',error);
+      }
+    })
+
+
+
+
+
+
+} 
+
+
+export const getRefer_user = async(token) => {
+
+  console.log('data,token',token);
+    return new Promise((resolve, reject) => {
+    
+  
+        try {
+  
+          axios({
+            method: 'get',
+            url: BASE_URL + 'referred_users',
+            headers: {
+              'accept': 'application/json',
+              'content-Type': 'application/json',
+              'Authorization': 'Bearer '+token
+            },
+          })
+            .then(async (response) => {
+              resolve(response)
+           
+            })
+            .catch((err) => {
+              reject(err.response)
+          console.log('responseerror catch',err);
+    
+            })
+        } catch (error) {
+          reject(error)
+          console.log('try catch',error);
+        }
+      })
+  
+  
+  
+  
+  
+  
+  } 
+  

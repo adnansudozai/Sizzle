@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import {View, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {Container, ResponsiveText, InputField, Button} from '../../components';
 import styles from './styles';
-
+import { useDispatch, Provider } from "react-redux";
+import { saveuserpin } from '../../redux/actions/userDataAction';
 const PinScreen = props => {
   const [pin, setPin] = useState('');
   const [confirmPin, setConfirmPin] = useState('');
   const [errormessage, seterrormessage] = useState('');
   const [error, seterror] = useState(false);
-
+ const dispatch = useDispatch();
   const verifaypin=()=>{
     if(!pin){
       seterrormessage('Please enter a Pin')
@@ -25,7 +26,7 @@ const PinScreen = props => {
     
     }
     else{
-
+      dispatch(saveuserpin(pin));
       props.navigation.navigate('DashboardTabNavigator')
     }
    

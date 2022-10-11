@@ -26,7 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04104C9128F48D3A000B4231 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
+		0433F17A28F4B1C900026814 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		044BC2CA28D8EC8A0086D12B /* Sizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		044BC2CB28D8EC8A0086D12B /* SizzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SizzleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E1966A28D8E88F0064F927 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Sizzle/main.m; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		13B07FAE1A68108700A75B9A /* Sizzle */ = {
 			isa = PBXGroup;
 			children = (
-				04104C9128F48D3A000B4231 /* www */,
+				0433F17A28F4B1C900026814 /* www */,
 				04E1967928D8EAFC0064F927 /* LaunchScreen.storyboard */,
 				04E1967728D8EAE40064F927 /* Images.xcassets */,
 				04E1967328D8EA820064F927 /* Info.plist */,
