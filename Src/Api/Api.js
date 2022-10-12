@@ -6,7 +6,6 @@ import axios from 'axios'
 import {openDatabase} from 'react-native-sqlite-storage';
 const BASE_URL=`https://api-sizzle.herokuapp.com/api/v1/`
 
-
 export const Userlogin=(isLogin)=>{
 
   const db = openDatabase(
@@ -67,11 +66,12 @@ const successCB = () => {
 const openCB = () => {
   console.log('Database OPENED');
 };
-
   db.transaction(tx => {
     tx.executeSql(
       'SELECT * FROM Users',[],
       (tx, resul) => {
+console.log('czlll',tx),
+
 console.log('czlll',resul);
        
         callback(resul.rows.item(0).isLogin)
@@ -368,9 +368,9 @@ console.log(data,token);
 } 
 
 
-export const verifay_authcode = async(data,token) => {
+export const verifay_authcode = async(data) => {
 
-console.log('data,token',data,token);
+console.log('data,token',data);
   return new Promise((resolve, reject) => {
   
 
@@ -383,7 +383,7 @@ console.log('data,token',data,token);
           headers: {
             'accept': 'application/json',
             'content-Type': 'application/json',
-            'Authorization': 'Bearer '+token
+     
           },
         })
           .then(async (response) => {
@@ -448,3 +448,73 @@ export const getRefer_user = async(token) => {
   
   } 
   
+export const Logout_user = async(token) => {
+
+  console.log('token',token);
+    return new Promise((resolve, reject) => {
+        try {
+  
+          axios({
+            method: 'DELETE',
+            url: BASE_URL + 'sign_out',
+            headers: {
+              'Authorization': 'Bearer '+token
+            },
+          })
+            .then(async (response) => {
+              resolve(response)
+           
+            })
+            .catch((err) => {
+              reject(err.response)
+          console.log('responseerror catch',err);
+    
+            })
+        } catch (error) {
+          reject(error)
+          console.log('try catch',error);
+        }
+      })
+  
+  
+  
+  
+  
+  
+  } 
+  
+  export const check_userauth = async(token) => {
+
+    console.log('token=======>>>>',token);
+      return new Promise((resolve, reject) => {
+          try {
+    
+            axios({
+              method: 'GET',
+              url: BASE_URL + 'member-data',
+              headers: {
+                'Authorization': 'Bearer'+token
+              },
+            })
+              .then(async (response) => {
+                resolve(response)
+             
+              })
+              .catch((err) => {
+                reject(err.response)
+            console.log('responseerror catch',err);
+      
+              })
+          } catch (error) {
+            reject(error)
+            console.log('try catch',error);
+          }
+        })
+    
+    
+    
+    
+    
+    
+    } 
+    

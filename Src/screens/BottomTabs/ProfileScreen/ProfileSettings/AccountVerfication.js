@@ -61,13 +61,13 @@ if (!email) {
       seterrormessage('Enter Auth code')
     } else {
       try {
-        let data={confirmation_token:authCode }
-        await verifay_authcode(data, userdata.barerToken).then((res)=>{
+        let data={'confirmation_token':authCode }
+        await verifay_authcode(data).then((res)=>{
           console.log('ressssssss',res);
          
         }).catch((error)=>{
           console.log('error is',error);
-          setverifay(false)
+          // setverifay(false)
     
         })
         

@@ -39,6 +39,7 @@ const YourSecretPharase = props => {
       console.log('err===>>>', err);
     }
   };
+  
   const copyhandle = () => {
     Clipboard.setString(scretstring);
 

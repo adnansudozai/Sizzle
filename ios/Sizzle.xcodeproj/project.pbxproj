@@ -7,28 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040454DC28F7171200B3F025 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 040454DB28F7102300B3F025 /* www */; };
 		044BC2CC28D8ECE50086D12B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1966A28D8E88F0064F927 /* main.m */; };
 		044BC2CD28D8ECF00086D12B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E1966C28D8E8DF0064F927 /* AppDelegate.m */; };
 		047E467E28DCECD700CC825B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E1967728D8EAE40064F927 /* Images.xcassets */; };
 		047E467F28DCECDF00CC825B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E1967928D8EAFC0064F927 /* LaunchScreen.storyboard */; };
-		9CA99F0BF31A4B8589388480 /* libPods-Sizzle-SizzleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 557461E651054DC252985D7F /* libPods-Sizzle-SizzleTests.a */; };
 		B876D7F0EABB91C8552D26F3 /* libPods-Sizzle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F0EAFC1431BF2FF5F58B145 /* libPods-Sizzle.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = Sizzle;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		0433F17A28F4B1C900026814 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
+		040454DB28F7102300B3F025 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		044BC2CA28D8EC8A0086D12B /* Sizzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sizzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		044BC2CB28D8EC8A0086D12B /* SizzleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SizzleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E1966A28D8E88F0064F927 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Sizzle/main.m; sourceTree = "<group>"; };
 		04E1966C28D8E8DF0064F927 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04E1966E28D8E9480064F927 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -46,14 +35,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9CA99F0BF31A4B8589388480 /* libPods-Sizzle-SizzleTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -68,7 +49,7 @@
 		13B07FAE1A68108700A75B9A /* Sizzle */ = {
 			isa = PBXGroup;
 			children = (
-				0433F17A28F4B1C900026814 /* www */,
+				040454DB28F7102300B3F025 /* www */,
 				04E1967928D8EAFC0064F927 /* LaunchScreen.storyboard */,
 				04E1967728D8EAE40064F927 /* Images.xcassets */,
 				04E1967328D8EA820064F927 /* Info.plist */,
@@ -106,7 +87,6 @@
 				CDE3A3CC4F4C40C081C02360 /* Resources */,
 				C2A86695542F0DC99C93B5E5 /* Pods */,
 				044BC2CA28D8EC8A0086D12B /* Sizzle.app */,
-				044BC2CB28D8EC8A0086D12B /* SizzleTests.xctest */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -134,26 +114,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* SizzleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SizzleTests" */;
-			buildPhases = (
-				322F52A2B2789B3B6ADDF239 /* [CP] Check Pods Manifest.lock */,
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-				57DC25E5604CDCFFEA3BD39A /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = SizzleTests;
-			productName = SizzleTests;
-			productReference = 044BC2CB28D8EC8A0086D12B /* SizzleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* Sizzle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Sizzle" */;
@@ -183,10 +143,6 @@
 			attributes = {
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
 					};
@@ -206,23 +162,16 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* Sizzle */,
-				00E356ED1AD99517003FC87E /* SizzleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040454DC28F7171200B3F025 /* www in Resources */,
 				047E467F28DCECDF00CC825B /* LaunchScreen.storyboard in Resources */,
 				047E467E28DCECD700CC825B /* Images.xcassets in Resources */,
 			);
@@ -244,45 +193,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
-		};
-		322F52A2B2789B3B6ADDF239 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Sizzle-SizzleTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		57DC25E5604CDCFFEA3BD39A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sizzle-SizzleTests/Pods-Sizzle-SizzleTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sizzle-SizzleTests/Pods-Sizzle-SizzleTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sizzle-SizzleTests/Pods-Sizzle-SizzleTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		58B778D5AF741D95AA78E5E2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -345,13 +255,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -363,68 +266,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* Sizzle */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87ADE2B730D84EB3E9CBBF36 /* Pods-Sizzle-SizzleTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SizzleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sizzle.app/Sizzle";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6470A3F5B5714EE96E24C412 /* Pods-Sizzle-SizzleTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = SizzleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sizzle.app/Sizzle";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB77FEBFBC935447FF7BE2EF /* Pods-Sizzle.debug.xcconfig */;
@@ -610,15 +452,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SizzleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Sizzle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

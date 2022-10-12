@@ -14,6 +14,7 @@ import {openDatabase} from 'react-native-sqlite-storage';
 import Web3 from 'web3';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { check_userauth } from '../../../Api/Api';
 
 const Home = props => {
   let userdata=useSelector(state => state.userdataReducer)
@@ -25,6 +26,7 @@ React.useEffect(() => {
   getTokenBalance();
   mybalancesum();
   getallTokens();
+  checkauth()
   });
 
   return unsubscribe;
@@ -35,6 +37,14 @@ React.useEffect(() => {
     errorCB,
     openCB,
   );
+  const checkauth=async()=>{
+   await check_userauth(userdata.barerToken).then((res)=>{
+    console.log('res==',res);
+   }).catch((err)=>{
+    console.log('errorrrr',err);
+   })
+   
+  }
 
   const errorCB = err => {
     console.log('SQL Error: ' + err);

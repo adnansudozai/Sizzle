@@ -230,7 +230,7 @@ PODS:
     - React-Core
   - react-native-randombytes (3.6.1):
     - React-Core
-  - react-native-safe-area-context (4.3.4):
+  - react-native-safe-area-context (4.4.1):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -561,7 +561,7 @@ SPEC CHECKSUMS:
   react-native-fingerprint-scanner: c68136ca57e3704d7bdf5faa554ea535ce15b1d0
   react-native-get-random-values: a6ea6a8a65dc93e96e24a11105b1a9c8cfe1d72a
   react-native-randombytes: 5fc412efe7b5c55b9002c0004d75fe5fabcaa507
-  react-native-safe-area-context: ccadc67fb5d75884dbcf993192de3105205dbff9
+  react-native-safe-area-context: ec0d85aca8110dae9327430a9541fec165352dab
   react-native-simple-toast: 4f6a5b31f7a03bace3388fe9477b4db3de221bdd
   react-native-sqlite-storage: 6df009b8b67fe34c57c5fd06ee8fff7669fece6d
   react-native-webview: a192040320142d8f10d652a745c46e4f43e37f8c

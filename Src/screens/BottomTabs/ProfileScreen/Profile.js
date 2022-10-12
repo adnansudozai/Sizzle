@@ -18,11 +18,12 @@ import {
   Images,
 } from '../../../components';
 import { useSelector } from 'react-redux';
-
-import { commify } from 'ethers/lib/utils';
-
+import { Logout_user,Userlogin } from '../../../Api/Api';
+import { useDispatch, Provider } from "react-redux";
+import { saveUserdata } from '../../../redux/actions/userDataAction';
 const Profile = props => {
   const [theme, setTheme] = useState('LIGHT');
+  const dispatch = useDispatch();
   let data=useSelector(state => state.userdataReducer)
   console.log('userdata',data);
   const settingItemsData = [
@@ -67,7 +68,33 @@ const Profile = props => {
       to: 'Community',
     },
   ];
+const userLogout= async()=>{
 
+  dispatch(saveUserdata([],''));
+
+Userlogin(false)
+props.navigation.navigate('Login')
+try {
+  await Logout_user(data.barerToken).then((res)=>{
+
+    if(res){
+      console.log('res=====>>>',res);
+      dispatch(saveUserdata([],''));
+
+  Userlogin(false)
+  props.navigation.navigate('Login')
+
+    }
+  }).catch(error=>{
+    console.log(error);
+    
+  })
+  
+} catch (error) {
+  console.log('error',error);
+}
+
+}
   const renderSettingsItem = (item, navigation) => {
     
     return (
@@ -146,7 +173,7 @@ const Profile = props => {
               />
             </View>
           </View>
-          <View style={styles.darkModeButton}>
+          {/* <View style={styles.darkModeButton}>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Icons name={'ios-moon-outline'} size={25} color={'#A3A4AB'} />
               <View>
@@ -169,10 +196,10 @@ const Profile = props => {
               }
               value={theme == 'LIGHT' ? false : true}
             />
-          </View>
+          </View> */}
           <View>
             <GradientButton
-              onPress={() => props.navigation.navigate('Login')}
+              onPress={() =>userLogout()}
               title={'Logout'}
               titleStyle={{fontSize: 4.5}}
               btnContainer={{
