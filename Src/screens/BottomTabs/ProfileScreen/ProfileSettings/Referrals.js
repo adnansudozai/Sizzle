@@ -5,8 +5,8 @@ import {
   FlatList,
   TouchableOpacity,
   Share,
-  ScrollView,
 } from 'react-native';
+import {ScrollView} from 'react-native-virtualized-view'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -24,16 +24,13 @@ import {
 } from '../../../../components';
 import Toast from 'react-native-simple-toast';
 import Clipboard from '@react-native-clipboard/clipboard';
-
 import styles from './styles';
 import { getRefer_user } from '../../../../Api/Api';
-import { coursePlaylistDATA } from '../../HomeScreen/Empower/dummyArray';
 const Referrals = props => {
 let userdata=useSelector(state => state.userdataReducer)
 
 const [myreferalcode,setmyreferalcode]=useState(userdata.userdata.referral_code?userdata.userdata.referral_code:'WADEF5RCT3T4DF3')
 const [referaluser,setreferaluser]=useState([])
-console.log('userdata==',userdata.userdata.image_url);
   const onSubmit = async () => {
     try {
       const result = await Share.share({

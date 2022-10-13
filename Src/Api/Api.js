@@ -488,9 +488,8 @@ export const Logout_user = async(token) => {
     console.log('token=======>>>>',token);
       return new Promise((resolve, reject) => {
           try {
-    
             axios({
-              method: 'GET',
+              method: 'get',
               url: BASE_URL + 'member-data',
               headers: {
                 'Authorization': 'Bearer'+token
@@ -502,7 +501,7 @@ export const Logout_user = async(token) => {
               })
               .catch((err) => {
                 reject(err.response)
-            console.log('responseerror catch',err);
+            console.log('catch',err);
       
               })
           } catch (error) {
@@ -510,11 +509,6 @@ export const Logout_user = async(token) => {
             console.log('try catch',error);
           }
         })
-    
-    
-    
-    
-    
     
     } 
     

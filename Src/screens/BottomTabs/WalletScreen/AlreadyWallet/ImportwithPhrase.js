@@ -182,7 +182,7 @@ console.log(generateWallet);
             </View>
             <View style={{marginVertical: 10, marginHorizontal: wp(6)}}>
               <ResponsiveText style={styles.TextPlaceholder}>
-                Typically 12 (sometimes 24) words separated by single spaces
+                Typically 12 words separated by single spaces
               </ResponsiveText>
             </View>
 

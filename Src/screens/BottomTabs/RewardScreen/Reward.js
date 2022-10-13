@@ -1,16 +1,13 @@
-import {Dimensions, StyleSheet, TouchableOpacity, View,FlatList,Image,ScrollView} from 'react-native';
+import {Dimensions, StyleSheet, TouchableOpacity, View,FlatList,Image} from 'react-native';
 import React, {useCallback, useEffect, useImperativeHandle} from 'react';
 import {Container, ResponsiveText, Header,Images} from '../../../components';
-
+import {ScrollView} from 'react-native-virtualized-view'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-
 const {height: SCREEN_HEIGHT} = Dimensions.get('window');
-
 let Data=[
   {
   id:1,
@@ -147,7 +144,6 @@ const BottomSheet = (props) => {
    </Container>
   );
 };
-
 const styles = StyleSheet.create({
   bottomSheetContainer: {
     height: SCREEN_HEIGHT,

@@ -40,6 +40,7 @@ const createWalletScreen = props => {
         for (let i = 0; i < results.rows.length; ++i)
           temp.push(results.rows.item(i));
         console.log('temp====>>', temp);
+       
       });
     });
   }, []);
@@ -90,7 +91,9 @@ const createWalletScreen = props => {
             />
             <Button
               onPress={() => {
-                props.navigation.navigate('AlreadyWalletScreen');
+                props.navigation.navigate('ImportwithPhrase',{
+                  name:'Multi Chain'
+                });
               }}
               title={'Already have a wallet'}
               titleStyle={{fontSize: 4, color: '#000'}}

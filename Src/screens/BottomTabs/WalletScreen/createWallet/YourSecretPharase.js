@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {View, FlatList, TouchableOpacity, ScrollView} from 'react-native';
+import {View, FlatList, TouchableOpacity} from 'react-native';
+import {ScrollView} from 'react-native-virtualized-view'
 import styles from './secretePharaseStyles';
 import 'react-native-get-random-values';
 import {Button, Container, ResponsiveText} from '../../../../components';
 import {ethers} from 'ethers';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Toast from 'react-native-simple-toast';
+import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory';
 
 const YourSecretPharase = props => {
   const [loading, setLoading] = useState(false);

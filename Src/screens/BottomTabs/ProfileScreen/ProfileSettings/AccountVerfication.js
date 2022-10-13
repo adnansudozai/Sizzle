@@ -20,6 +20,7 @@ import {
 } from '../../../../components';
 import { email_verification,verifay_authcode } from '../../../../Api/Api';
 import { useSelector } from 'react-redux';
+import Toast from 'react-native-simple-toast';
 
 const AccountVerfication = props => {
   const [verifay, setverifay] = useState(false);
@@ -44,7 +45,18 @@ if (!email) {
     }
     await email_verification(data, userdata.barerToken).then((res)=>{
       console.log('ressssssss',res);
-      setverifay(true)
+      if(res.data.error?res.data.error:null){
+        seterror(true)
+        seterrormessage(res.data.error[0])
+      }
+      else{
+        // seterror(true)
+        // seterrormessage('Check your email')
+        Toast.show('Check Your Email!', Toast.LONG);
+
+        setverifay(true)
+
+      }
     }).catch((error)=>{
       console.log('error is',error);
 
@@ -133,16 +145,16 @@ if (!email) {
                 }}
                 marginTop={10}
               />
-              {error?
-                <ResponsiveText
-                style={{marginTop:20,alignSelf: 'center',color:'red'}}>{errormessage}</ResponsiveText>
-             :null}
+              
             </View>
 
               }
          
           </View>
-         
+          {error?
+                <ResponsiveText
+                style={{marginTop:20,alignSelf: 'center',color:'red'}}>{errormessage}</ResponsiveText>
+             :null}
         </View>
       </TouchableWithoutFeedback>
       {!verifay?

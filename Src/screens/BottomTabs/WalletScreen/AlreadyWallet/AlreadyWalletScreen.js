@@ -7,6 +7,7 @@ const AlreadyWalletScreen = props => {
   return (
     <Container backgroundColor={'white'}>
       <View style={styles.mainView}>
+
         <TouchableOpacity
           // onPress={() => props.navigation.navigate('ImportwithPhrase')}
           style={styles.container}>

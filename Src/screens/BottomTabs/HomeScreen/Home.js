@@ -38,14 +38,19 @@ React.useEffect(() => {
     openCB,
   );
   const checkauth=async()=>{
-   await check_userauth(userdata.barerToken).then((res)=>{
-    console.log('res==',res);
-   }).catch((err)=>{
-    console.log('errorrrr',err);
-   })
-   
-  }
+    try {
+      await check_userauth(userdata.barerToken).then((res)=>{
+        console.log('res==',res);
+       }).catch((err)=>{
+        console.log('errorrrr',err);
+       })
+    } catch (error) {
+      console.log('catch===',error);
+    }
 
+  
+  }
+  
   const errorCB = err => {
     console.log('SQL Error: ' + err);
   };
