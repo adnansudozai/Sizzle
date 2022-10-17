@@ -39,6 +39,7 @@ const InputField = props => {
         maxLength={props.maxLength}
         onFocus={props.onFocus}
         textAlign={props?.textAlign}
+        keyboardType={props?.keyboardType}
         secureTextEntry={props.secureTextEntry?props.secureTextEntry:false}
         placeholderTextColor={
           props.placeholderTextColor ? props.placeholderTextColor : '#94959B'

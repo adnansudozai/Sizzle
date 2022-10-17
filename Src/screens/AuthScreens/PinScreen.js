@@ -31,6 +31,25 @@ const PinScreen = props => {
     }
    
   }
+  const handlepin=(text,pin)=>{
+    let newText = '';
+    let numbers = '0123456789';
+
+    for (var i=0; i < text.length; i++) {
+        if(numbers.indexOf(text[i]) > -1 ) {
+            newText = newText + text[i];
+        }
+        else {
+            alert("please enter numbers only");
+        }
+    }
+    if(pin=='pin'){
+    setPin(newText)
+          }
+    else{
+      setConfirmPin(newText)
+    }
+  }
 
   return (
     <Container backgroundColor={'white'}>
@@ -42,7 +61,7 @@ const PinScreen = props => {
           <View style={{paddingHorizontal: 25}}>
             <ResponsiveText style={styles.application}>
               {
-                'Set your PIN, this PIN is used every time you enter the application.'
+                'Set your 4 digit PIN, this PIN is used every time you enter the application.'
               }
             </ResponsiveText>
           </View>
@@ -62,8 +81,8 @@ const PinScreen = props => {
               color={'#000'}
               secureTextEntry={true}
               keyboardType="numeric"
-              onChangeText={pin => {setPin(pin),seterror(false)}}
-              maxLength={6}
+              onChangeText={pin => {handlepin(pin,'pin'),seterror(false)}}
+              maxLength={4}
               borderRadius={30}
               backgroundColor={'#F1F1F5'}
             />
@@ -74,9 +93,9 @@ const PinScreen = props => {
                 value={confirmPin}
                 color={'#000'}
                 secureTextEntry={true}
-                maxLength={6}
-                keyboardType="numeric"
-                onChangeText={confirmPin => setConfirmPin(confirmPin)}
+                maxLength={4}
+                keyboardType='numeric'
+                onChangeText={confirmPin => {handlepin(confirmPin,'confirm'),seterror(false)}}
                 borderRadius={30}
                 backgroundColor={'#F1F1F5'}
               />
@@ -91,20 +110,7 @@ const PinScreen = props => {
                 borderRadius: 30,
               }}
             />
-            <View>
-              <Button
-                title={'Skip'}
-                onPress={() =>  props.navigation.navigate('DashboardTabNavigator')}
-                titleStyle={{fontSize: 4.5, color: '#000'}}
-                btnContainer={{
-                  borderRadius: 5,
-                  marginTop: 30,
-                  borderRadius: 30,
-
-                  backgroundColor: '#F1F1F5',
-                }}
-              />
-            </View>
+  
           </View>
         </View>
       </TouchableWithoutFeedback>

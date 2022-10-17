@@ -24,7 +24,8 @@ export default function Splash(props){
           index: 0,
           routes: [
             {                                         
-              name: 'DashboardTabNavigator',
+  
+              name: 'Createpin',
             
             },
           ],

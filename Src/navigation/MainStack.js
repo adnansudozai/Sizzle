@@ -20,6 +20,7 @@ import Notification from '../screens/BottomTabs/ProfileScreen/Notification/Notif
 import FAQ from '../screens/BottomTabs/ProfileScreen/Helpcenter/FAQ';
 import Community from '../screens/BottomTabs/ProfileScreen/ProfileSettings/Community/Community';
 import Changepassword from '../screens/Changepassword/Changepassword';
+import Createpin from '../screens/AuthScreens/Enterpin'
 const Stack = createStackNavigator();
 
 
@@ -58,6 +59,7 @@ const MainStack = () => {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="PinScreen" component={PinScreen} />
       <Stack.Screen name="StakingScreen" component={StakingScreen} />
+      <Stack.Screen name="Createpin" component={Createpin} />
       <Stack.Screen name="Forgotpassword" component={Forgotpassword} />
       <Stack.Screen name="DepositScreen" component={DepositScreen} />
       <Stack.Screen name="WithdrawScreen" component={WithdrawScreen} />

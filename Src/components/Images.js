@@ -11,6 +11,11 @@ const Images = {
   leotoken: require('../assets/Images/leo-token.webp'),
   bluemoon: require('../assets/Images/bluemoon.png'),
   playToEarn: require('../assets/Images/playToEarn.jpeg'),
+  crosicon: require('../assets/Images/crosicon.png'),
+  face: require('../assets/Images/face.png'),
+  finger: require('../assets/Images/finger.png'),
+
+
   ethereum: require('../assets/Images/ethereum.webp'),
   matic: require('../assets/Images/matic.webp'),
   profileImage: require('../assets/Images/profileImage.png'),
