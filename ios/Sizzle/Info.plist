@@ -42,9 +42,7 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>$(PRODUCT_NAME) requires FaceID access to allows you quick and secure access.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
-	<key>NSPhotoLibraryUsageDescription</key>    
-<string>This app requires access to the photo library.</string>
+	<string>This app requires access to the photo library.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -66,6 +64,11 @@
 		<string>Roboto-Black.ttf</string>
 		<string>Roboto-Bold.ttf</string>
 		<string>Roboto-Medium.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

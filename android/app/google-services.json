@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "212994226848",
+    "project_id": "sizelapp",
+    "storage_bucket": "sizelapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212994226848:android:811b52cc79ebb65aa727c5",
+        "android_client_info": {
+          "package_name": "com.Sizzle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212994226848-0cla5jh8fp1l51ollrnq8buj4s9k2t9l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Sizzle",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "212994226848-rjhke4os23mk6hai21du21k0gqir49ld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNSUM9LzT8gKDw0ILznm709SxU-W_O0GI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212994226848-rjhke4os23mk6hai21du21k0gqir49ld.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "212994226848-53hlqshf5v1k5e89mhsfpo65p98l5pv0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sizzle.production",
+                "app_store_id": "11221122"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

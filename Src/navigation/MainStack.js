@@ -21,6 +21,7 @@ import FAQ from '../screens/BottomTabs/ProfileScreen/Helpcenter/FAQ';
 import Community from '../screens/BottomTabs/ProfileScreen/ProfileSettings/Community/Community';
 import Changepassword from '../screens/Changepassword/Changepassword';
 import Createpin from '../screens/AuthScreens/Enterpin'
+import { requestUserPermission,notificationListener } from '../components/Notificationservices';
 const Stack = createStackNavigator();
 
 
@@ -50,6 +51,11 @@ const ProfileSettingsStack = () => {
 };
 
 const MainStack = () => {
+  React.useEffect(()=>{
+    notificationListener()
+    requestUserPermission()
+  },[])
+
   return (
     <Stack.Navigator initialRouteName="Splash" 
     screenOptions={{ headerShown: false }}
