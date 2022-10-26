@@ -7,6 +7,8 @@ import {
   Image,
 } from 'react-native';
 import {Container, ResponsiveText,ERC20, Images} from '../../../components';
+import messaging from "@react-native-firebase/messaging";
+
 import styles from './styles';
 import '../../../../shim';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,7 +16,7 @@ import {openDatabase} from 'react-native-sqlite-storage';
 import Web3 from 'web3';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { check_userauth } from '../../../Api/Api';
+import { upload_fcmtoken } from '../../../Api/Api';
 
 const Home = props => {
   let userdata=useSelector(state => state.userdataReducer)
@@ -26,10 +28,42 @@ React.useEffect(() => {
   getTokenBalance();
   mybalancesum();
   getallTokens();
+  savefcmtoken();
   });
 
   return unsubscribe;
 }, [props.navigation]);
+
+const savefcmtoken=async()=>{
+
+
+try {
+  const fcmToken = await messaging().getToken();
+
+
+  let fcmtoken={ 'fcm_device_token':{
+    "token":fcmToken,
+      "user_id":userdata.userdata.id
+     } }
+    await upload_fcmtoken(fcmtoken,userdata.barerToken)
+.then((res) => {
+  console.log('responsz====>>',res);
+   
+
+}).catch((err) => {
+
+console.log('err',err.data.error);
+
+
+})
+
+} catch (error) {
+  console.log('errorerrorerror',error);
+}
+ 
+ 
+      }
+
   const db = openDatabase(
     {name: 'sizzleWallet.db', createFromLocation: 1},
     successCB,
@@ -349,7 +383,7 @@ React.useEffect(() => {
           <Image source={Images.profile} style={{width: 50, height: 50,borderRadius:50/2,resizeMode:'cover'}} />
 }
         </TouchableOpacity>
-        <TouchableOpacity style={{alignSelf: 'center'}}>
+        <TouchableOpacity onPress={()=>props.navigation.navigate('ProfileSettings', {screen:'Notification'})} style={{alignSelf: 'center'}}>
           <Icon name="bell-outline" size={25} color="#000" />
         </TouchableOpacity>
       </View>

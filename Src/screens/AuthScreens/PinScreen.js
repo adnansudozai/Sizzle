@@ -41,7 +41,7 @@ const PinScreen = props => {
         }
         else {
             alert("please enter numbers only");
-        }
+        }   
     }
     if(pin=='pin'){
     setPin(newText)

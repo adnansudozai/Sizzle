@@ -6,11 +6,16 @@ import {
     View,
     FlatList,
 } from 'react-native';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp, widthPercentageToDP } from 'react-native-responsive-screen';
 import { Container, Images, Header, ResponsiveText } from '../../../../components/index';
+import { getall_notiication } from '../../../../Api/Api';
 import styles from './styles';
+import { useSelector } from 'react-redux';
+
 const Notification = props => {
     const [loading, setLoading] = useState(false);
+    const [notification, setnotification] = useState([]);
+    let data=useSelector(state => state.userdataReducer)
 
     let notidata = [
         {
@@ -56,9 +61,36 @@ const Notification = props => {
             date: '20 Feb 2021',
         },
     ];
-
+    const getnotifications=async()=>{
+      
+      
+    try {
+        
+        await getall_notiication(data.barerToken)
+    .then((res) => {
+        console.log('res====',res)
+        setnotification(res.data.notifications)
+    
+    
+    })
+    
+    } catch (error) {
+        console.log('catch error',error);
+        setloading(false)
+    
+    }
+    
+          
+            
+        
+    
+    }
+    useEffect(()=>{
+        getnotifications()
+    },[])
 
     const renderItem = ({ item, index }) => {
+
         return (
             <View style={styles.mainnotifications}>
                 <View
@@ -69,7 +101,7 @@ const Notification = props => {
                         alignContent: 'center',
                     }}>
                     <Image
-                        source={item.icons}
+                        source={item.attributes.image_url?item.attributes.image_url: Images.settingicon}
                         style={{
                             height: 35,
                             width: 35,
@@ -77,27 +109,31 @@ const Notification = props => {
                         }}
                     />
                 </View>
-                <View style={{ borderWidth: 0 }}>
+                <View style={{ borderWidth: 0,width:widthPercentageToDP(85) }}>
                     <View style={styles.mainview}>
                         <View style={styles.headingview}>
                             <ResponsiveText style={styles.headingtext}>
-                                {item.heading}
+                                {item.attributes.title}
                             </ResponsiveText>
                         </View>
 
-                        <View style={styles.headingview}>
+                        <View style={styles.dateview}>
                             <ResponsiveText style={styles.explanationtext}>
-                                {item.date}
+                                {item.attributes.created_at.slice(0,10)}
                             </ResponsiveText>
                         </View>
                     </View>
+
+
+
+                    
                     <View style={{ marginTop: 3 }}>
                         <ResponsiveText
                             style={{
                                 ...styles.explanationtext,
                                 marginLeft: 10,
                             }}>
-                            {item.explanation}
+                            {item.attributes.description}
                         </ResponsiveText>
                     </View>
                 </View>
@@ -120,7 +156,7 @@ const Notification = props => {
 
                 <View style={{ marginTop: 20, paddingBottom: hp(5) }}>
                     <FlatList
-                        data={notidata}
+                        data={notification}
                         renderItem={renderItem}
                         keyExtractor={item => item}
                         showsVerticalScrollIndicator={false}

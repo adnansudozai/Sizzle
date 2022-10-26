@@ -162,8 +162,6 @@ export const login_User = async(data) => {
 
 }
 
-
-
 export const update_profile = async(data,token) => {
 
 
@@ -483,14 +481,15 @@ export const Logout_user = async(token) => {
   
   } 
   
-  export const check_userauth = async(token) => {
+  export const upload_fcmtoken = async(data,token) => {
 
-    console.log('token=======>>>>',token);
+    console.log('token=======>>>>',data,token);
       return new Promise((resolve, reject) => {
           try {
             axios({
-              method: 'get',
-              url: BASE_URL + 'member-data',
+              method: 'POST',
+              url: BASE_URL + 'fcm_device_tokens',
+              data:data,
               headers: {
                 'Authorization': 'Bearer'+token
               },
@@ -511,4 +510,32 @@ export const Logout_user = async(token) => {
         })
     
     } 
-    
+    export const getall_notiication = async(token) => {
+
+      console.log('token=======>>>>',token);
+        return new Promise((resolve, reject) => {
+            try {
+              axios({
+                method: 'Get',
+                url: BASE_URL + 'notifications',
+                headers: {
+                  'Authorization': 'Bearer'+token
+                },
+              })
+                .then(async (response) => {
+                  resolve(response)
+               
+                })
+                .catch((err) => {
+                  reject(err.response)
+              console.log('catch',err);
+        
+                })
+            } catch (error) {
+              reject(error)
+              console.log('try catch',error);
+            }
+          })
+      
+      } 
+      

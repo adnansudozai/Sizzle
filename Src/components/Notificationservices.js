@@ -41,7 +41,7 @@ export const notificationListener = async () => {
  try {
   messaging().onNotificationOpenedApp((remoteMessage) => {
     console.log(
-      "Notification caused app to open from background state:",
+      "Notification caused app to open from openapp state:",
       remoteMessage.notification
     );
   });

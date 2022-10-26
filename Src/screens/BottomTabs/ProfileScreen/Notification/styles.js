@@ -53,18 +53,25 @@ const styles = StyleSheet.create({
   mainview: {
     borderWidth: 0,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+
     alignItems: 'center',
   },
   headingview: {
     borderWidth: 0,
     marginLeft: 10,
+    width:wp(50)
+  },
+  dateview: {
     borderWidth: 0,
+    marginLeft: 10,
+    width:wp(28),
+    alignItems:'flex-end'
+   
   },
   explanationtext: {
     fontSize: 4,
     fontWeight: '400',
-    width: wp(60),
+    
     // marginTop: 3,
     letterSpacing: 0.02,
     color: Color.grayText,
