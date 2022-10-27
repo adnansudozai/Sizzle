@@ -27,7 +27,7 @@
     />
         <receiver
       android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationPublisher"
-    />
+    />      
         <receiver
       android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationBootEventReceiver"
     >
